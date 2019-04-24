@@ -64,6 +64,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Bootstrap Sass
 gem 'bootstrap-sass' #, '~> 3.3.6'
 
+# Bootstrap Forms in Rails
+gem 'bootstrap_form'
+
 # jQuery
 gem 'jquery-rails' # 4.3.3
 
