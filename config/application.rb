@@ -15,5 +15,8 @@ module Squadsnap
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # By default Rails loads all helper files to all views. Personally I do not like this, because methods’ names from different helper files might clash.
+    config.action_controller.include_all_helpers = false
   end
 end
