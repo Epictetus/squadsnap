@@ -38,3 +38,23 @@ You can find a journal with a list of notes or other learning efforts [here](htt
   * [CSS Media Queries](https://www.w3schools.com/css/css_rwd_mediaqueries.asp) - adding `squadsnap/assets/stylesheets/desktop.scss` and `.../mobile.scss` for their respective media attributes.
     * [x] 🐞 Getting a bug in branch `authentication`: `Sass::SyntaxError in Pages#index` as shown in this [screenshot](http://weteamsteve.com/stuff/images/sass_syntaxerror.png).
   * Up to the point in the [tutorial](https://medium.freecodecamp.org/lets-create-an-intermediate-level-ruby-on-rails-application-d7c6e997c63f) at the **Helpers** part
+  * Helpers
+    * Prevent helpers from being loaded to all views - `config.action_controller.include_all_helpers = false` in `application.rb`
+    * Inject `NavigationHelper` module inside the `ApplicationHelper` module by using an include method inside of  `application_helper.rb` ([Loading and Including Files](https://prograils.com/posts/ruby-methods-differences-load-require-include-extend))
+  * [squadsnap/wiki/Testing](https://github.com/weteamsteve/squadsnap/wiki/Testing)
+  * Generate new post model - `rails g model post`
+  * Generate new category model - `rails g model category`
+  * Now create some [associations](https://guides.rubyonrails.org/association_basics.html) between User, Category and Post models
+  * Every post is going to belong to a category and its author (user). Open the models’ files and add the associations.
+  * Create Home Page layout in bootstrap in file `views/pages/index.html.erb`
+  * To render the posts, we’ll need a posts directory inside the views.
+    * Generate a new controller called Posts, so it will automatically create a posts directory inside the views too.
+      * `rails g controller posts`
+    * Since in our app the PagesController is responsible for the homepage, we’ll need to query data inside the `pages_controller.rb` file’s index action. Inside the index action retrieve some records from the posts table. Assign the retrieved records to an instance variable, so the retrieved objects are going to be available inside the home page’s views.
+      * [Guide on Ruby Variables](https://www.tutorialspoint.com/ruby/ruby_variables.htm)
+      * Retrieving records from the database in Rails: [Active Record Query Interface](https://guides.rubyonrails.org/active_record_querying.html)
+    * `<%= render @posts %>` inside of `views/pages/index.html.erb`
+    * Use a [bootstrap card component](https://v4-alpha.getbootstrap.com/components/card/) for the posts partial
+    * To be able to click on a post and see its full content, without going to another page. To achieve this functionality we will use a [bootstrap's modal component](https://v4-alpha.getbootstrap.com/components/modal/).
+  * Onto **Modal window** or **Single post** in the [tutorial](https://medium.freecodecamp.org/lets-create-an-intermediate-level-ruby-on-rails-application-d7c6e997c63f).
+    * Investigate [this fix](https://stackoverflow.com/questions/8529420/how-to-show-twitter-bootstrap-modal-via-js-request-in-rails)
