@@ -51,6 +51,11 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.6'
   gem 'factory_bot_rails'
+  gem 'rubocop-rspec' # Added for moving from factory_girl to factory_bot,
+  # run rubocop \
+  # --require rubocop-rspec \
+  # --only FactoryBot/AttributeDefinedStatically \
+  # --auto-correct
   gem 'rails-controller-testing'
   gem 'headless'
   gem 'capybara'
