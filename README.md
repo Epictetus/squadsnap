@@ -1,6 +1,6 @@
 # README
 
-# Welcome to the squadsnap wiki!
+# Welcome to the squadsnap readme!
 
 The #2 sports team management app that makes communication and organization a breeze.
 
