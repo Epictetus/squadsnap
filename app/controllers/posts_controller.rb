@@ -1,10 +1,29 @@
 class PostsController < ApplicationController
+  before_action :redirect_if_not_signed_in, only: [:new]
+
   def show
     @post = Post.find(params[:id])
   end
 
+  def new
+    @branch = params[:branch]
+    @categories = Category.where(branch: @branch)
+    @post = Post.new
+  end
+
+  def create
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      redirect_to root_path
+    end
+  end
+
+
+
   def hobby
-  posts_for_branch(params[:action])
+    posts_for_branch(params[:action])
   end
 
   def study
@@ -15,7 +34,7 @@ class PostsController < ApplicationController
     posts_for_branch(params[:action])
   end
 
-private
+  private
 
   def posts_for_branch(branch)
     @categories = Category.where(branch: branch)
