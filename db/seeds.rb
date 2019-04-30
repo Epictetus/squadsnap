@@ -55,6 +55,9 @@ def seed_posts
   end
 end
 
-seed_users
+if Rails.env.development?
+  seed_users
+  seed_posts
+end
+
 seed_categories
-seed_posts
