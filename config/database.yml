@@ -81,8 +81,8 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+# Heroku echo $DATABASE_URL
+# postgres://tpadvqcjdfngjx:6487c26bf0f1bea5635f6c56de84d77a06dd833defd32c78888860d469e6444a@ec2-50-19-109-120.compute-1.amazonaws.com:5432/d2glrl5bhmu62l
 production:
   <<: *default
-  database: squadsnap_production
-  username: squadsnap
-  password: <%= ENV['SQUADSNAP_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_URL'] %>
