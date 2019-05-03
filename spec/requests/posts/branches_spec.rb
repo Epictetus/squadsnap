@@ -12,11 +12,6 @@ RSpec.describe "branches", :type => :request do
       get '/posts/study'
       expect(response).to render_template(:study)
     end
-
-    it 'renders a team template' do
-      get '/posts/team'
-      expect(response).to render_template(:team)
-    end
   end
 
   context 'non-signed in user' do

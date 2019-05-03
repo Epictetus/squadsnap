@@ -23,11 +23,4 @@ RSpec.feature "Infinite scroll", :type => :feature do
     check_posts_count
   end
 
-  scenario "User scrolls down the team page
-            and posts list will be appended with older posts", js: true do
-    create_list(:post, 30, category: create(:category, branch: 'team'))
-    visit team_posts_path
-    check_posts_count
-  end
-
 end
