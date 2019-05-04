@@ -1,20 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe "teams/index", type: :view do
+RSpec.describe "squads/index", type: :view do
   before(:each) do
-    assign(:teams, [
-      Team.create!(
+    assign(:squads, [
+      Squad.create!(
         :name => "Name",
         :sport => "Sport"
       ),
-      Team.create!(
+      Squad.create!(
         :name => "Name",
         :sport => "Sport"
       )
     ])
   end
 
-  it "renders a list of teams" do
+  it "renders a list of squads" do
     render
     assert_select "tr>td", :text => "Name".to_s, :count => 2
     assert_select "tr>td", :text => "Sport".to_s, :count => 2

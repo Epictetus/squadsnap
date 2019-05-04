@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "teams/show", type: :view do
+RSpec.describe "squads/show", type: :view do
   before(:each) do
-    @team = assign(:team, Team.create!(
+    @squad = assign(:squad, Squad.create!(
       :name => "Name",
       :sport => "Sport"
     ))
