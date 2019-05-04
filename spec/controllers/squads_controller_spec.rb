@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe TeamsController, type: :controller do
+RSpec.describe SquadsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Team. As you add validations to Team, be sure to
+  # Squad. As you add validations to Squad, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,12 +38,12 @@ RSpec.describe TeamsController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # TeamsController. Be sure to keep this updated too.
+  # SquadsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      Team.create! valid_attributes
+      Squad.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -51,8 +51,8 @@ RSpec.describe TeamsController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      team = Team.create! valid_attributes
-      get :show, params: {id: team.to_param}, session: valid_session
+      squad = Squad.create! valid_attributes
+      get :show, params: {id: squad.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
@@ -66,29 +66,29 @@ RSpec.describe TeamsController, type: :controller do
 
   describe "GET #edit" do
     it "returns a success response" do
-      team = Team.create! valid_attributes
-      get :edit, params: {id: team.to_param}, session: valid_session
+      squad = Squad.create! valid_attributes
+      get :edit, params: {id: squad.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Team" do
+      it "creates a new Squad" do
         expect {
-          post :create, params: {team: valid_attributes}, session: valid_session
-        }.to change(Team, :count).by(1)
+          post :create, params: {squad: valid_attributes}, session: valid_session
+        }.to change(Squad, :count).by(1)
       end
 
-      it "redirects to the created team" do
-        post :create, params: {team: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Team.last)
+      it "redirects to the created squad" do
+        post :create, params: {squad: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(Squad.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {team: invalid_attributes}, session: valid_session
+        post :create, params: {squad: invalid_attributes}, session: valid_session
         expect(response).to be_successful
       end
     end
@@ -100,41 +100,41 @@ RSpec.describe TeamsController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested team" do
-        team = Team.create! valid_attributes
-        put :update, params: {id: team.to_param, team: new_attributes}, session: valid_session
-        team.reload
+      it "updates the requested squad" do
+        squad = Squad.create! valid_attributes
+        put :update, params: {id: squad.to_param, squad: new_attributes}, session: valid_session
+        squad.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the team" do
-        team = Team.create! valid_attributes
-        put :update, params: {id: team.to_param, team: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(team)
+      it "redirects to the squad" do
+        squad = Squad.create! valid_attributes
+        put :update, params: {id: squad.to_param, squad: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(squad)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        team = Team.create! valid_attributes
-        put :update, params: {id: team.to_param, team: invalid_attributes}, session: valid_session
+        squad = Squad.create! valid_attributes
+        put :update, params: {id: squad.to_param, squad: invalid_attributes}, session: valid_session
         expect(response).to be_successful
       end
     end
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested team" do
-      team = Team.create! valid_attributes
+    it "destroys the requested squad" do
+      squad = Squad.create! valid_attributes
       expect {
-        delete :destroy, params: {id: team.to_param}, session: valid_session
-      }.to change(Team, :count).by(-1)
+        delete :destroy, params: {id: squad.to_param}, session: valid_session
+      }.to change(Squad, :count).by(-1)
     end
 
-    it "redirects to the teams list" do
-      team = Team.create! valid_attributes
-      delete :destroy, params: {id: team.to_param}, session: valid_session
-      expect(response).to redirect_to(teams_url)
+    it "redirects to the squads list" do
+      squad = Squad.create! valid_attributes
+      delete :destroy, params: {id: squad.to_param}, session: valid_session
+      expect(response).to redirect_to(squads_url)
     end
   end
 

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :squads
   devise_for :users, :controllers => {:registrations => "registrations"}
   root to: 'pages#index'
 
@@ -18,5 +19,4 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :teams
 end
