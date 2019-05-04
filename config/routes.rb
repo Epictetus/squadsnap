@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, :controllers => {:registrations => "registrations"}
   root to: 'pages#index'
 
@@ -16,4 +17,6 @@ Rails.application.routes.draw do
       get 'study'
     end
   end
+
+  resources :teams
 end
