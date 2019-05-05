@@ -1,3 +1,4 @@
+
 <p id="notice"><%= notice %></p>
 
 <h1>Squads</h1>
@@ -22,6 +23,8 @@
         <% if current_user.id == squad.owner_id %>
         <td><%= link_to 'Edit', edit_squad_path(squad) %></td>
         <td><%= link_to 'Destroy', squad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+        <td><%= link_to 'Join', join_squads_path(:id => squad) %></td>
         <% end %>
       </tr>
     <% end %>
