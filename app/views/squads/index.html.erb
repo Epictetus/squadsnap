@@ -17,7 +17,7 @@
       <tr>
         <td><%= squad.name %></td>
         <td><%= squad.sport %></td>
-        <td><%= squad.owner_id %></td>
+        <td><%= User.find(squad.owner_id).name %></td>
         <td><%= link_to 'Show', squad %></td>
         <td><%= link_to 'Edit', edit_squad_path(squad) %></td>
         <td><%= link_to 'Destroy', squad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
