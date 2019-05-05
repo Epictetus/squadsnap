@@ -77,7 +77,7 @@ class SquadsController < ApplicationController
     # Must be owner of a squad to edit or destroy it
     def require_permission
       if current_user.id != @squad.owner_id
-        redirect_to root_path, notice: 'You must be owner of a squad to do that action.'
+        redirect_to squads_path, notice: 'You must be owner of a squad to do that action.'
       end
     end
 end
