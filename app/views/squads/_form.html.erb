@@ -21,6 +21,12 @@
     <%= form.text_field :sport %>
   </div>
 
+  <div class="field">
+    <%= current_user.id %>
+  </div>
+
+  <%= form.hidden_field :owner_id, value: current_user.id %>
+
   <div class="actions">
     <%= form.submit %>
   </div>
