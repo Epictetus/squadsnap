@@ -29,10 +29,6 @@ class PostsController < ApplicationController
     posts_for_branch(params[:action])
   end
 
-  def team
-    posts_for_branch(params[:action])
-  end
-
   private
 
   def post_params
