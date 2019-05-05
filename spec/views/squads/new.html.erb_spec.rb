@@ -5,7 +5,7 @@ RSpec.describe "squads/new", type: :view do
     assign(:squad, Squad.new(
       :name => "MyString",
       :sport => "MyString",
-      :owner => 1
+      :owner_id => 1
     ))
   end
 
