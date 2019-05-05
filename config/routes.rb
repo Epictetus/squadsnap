@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :squads do
     member do
       get 'join'
-      #post 'join'
+      #put 'join'
     end
   end
 
