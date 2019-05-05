@@ -44,6 +44,6 @@
 <% if current_user.id == @squad.owner_id %>
 <%= link_to 'Edit', edit_squad_path(@squad) %> |
 <% else %>
-<%= link_to 'Join', join_squads_path(@squad) %> |
+<%= link_to 'Join', join_squad_path(@squad) %> |
 <% end %>
 <%= link_to 'Back', squads_path %>
