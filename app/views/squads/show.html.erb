@@ -15,5 +15,25 @@
   <%= User.find(@squad.owner_id).name %>
 </p>
 
+<p>
+  <strong>Members: <%= @members.size %></strong>
+  <table>
+  <% @members.each_with_index do |member, index| %>
+    <tr>
+      <td>Index</td>
+      <td><%= index %></td>
+    </tr>
+    <tr>
+      <td>Name: </td>
+      <td><%= member.user.name %></td>
+    </tr>
+    <tr>
+      <td>Membership: </td>
+      <td><%= member.membership %></td>
+    </tr>
+  <% end %>
+  </table>
+</p>
+
 <%= link_to 'Edit', edit_squad_path(@squad) %> |
 <%= link_to 'Back', squads_path %>
