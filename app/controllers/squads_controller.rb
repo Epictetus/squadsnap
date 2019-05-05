@@ -6,11 +6,13 @@ class SquadsController < ApplicationController
   # GET /squads.json
   def index
     @squads = Squad.all
+    @members = Member.all
   end
 
   # GET /squads/1
   # GET /squads/1.json
   def show
+    @members = Member.where(squad: @squad)
   end
 
   # GET /squads/new
