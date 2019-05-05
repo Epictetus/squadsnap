@@ -1,5 +1,6 @@
 class SquadsController < ApplicationController
   before_action :set_squad, only: [:show, :edit, :update, :destroy]
+  before_action :require_permission, only: [:edit, :destroy]
 
   # GET /squads
   # GET /squads.json
@@ -19,6 +20,7 @@ class SquadsController < ApplicationController
 
   # GET /squads/1/edit
   def edit
+    redirect_to root_path, notice: 'You must be the owner of the squad to edit it.' unless current_user.id == @Squad.owner_id
   end
 
   # POST /squads
@@ -54,6 +56,7 @@ class SquadsController < ApplicationController
   # DELETE /squads/1
   # DELETE /squads/1.json
   def destroy
+    #redirect_to root_path, notice: 'You must be the owner of the squad to edit it.' unless current_user.id == @squad.owner_id
     @squad.destroy
     respond_to do |format|
       format.html { redirect_to squads_url, notice: 'Squad was successfully destroyed.' }
@@ -70,5 +73,12 @@ class SquadsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def squad_params
       params.require(:squad).permit(:name, :sport, :owner_id)
+    end
+
+    # Must be owner of a squad to edit or destroy it
+    def require_permission
+      if current_user.id != @squad.owner_id
+        redirect_to root_path, notice: 'You must be owner of a squad to do that action.'
+      end
     end
 end
