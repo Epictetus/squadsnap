@@ -21,23 +21,29 @@ end
 
 
 def seed_categories
-  hobby = ['Arts', 'Crafts', 'Sports', 'Sciences', 'Collecting', 'Reading', 'Other']
-  study = ['Arts and Humanities', 'Physical Science and Engineering', 'Math and Logic',
-          'Computer Science', 'Data Science', 'Economics and Finance', 'Business',
-          'Social Sciences', 'Language', 'Other']
-  team = ['Study', 'Development', 'Arts and Hobby', 'Other']
+  #hobby = ['Arts', 'Crafts', 'Sports', 'Sciences', 'Collecting', 'Reading', 'Other']
+  #study = ['Arts and Humanities', 'Physical Science and Engineering', 'Math and Logic',
+  #        'Computer Science', 'Data Science', 'Economics and Finance', 'Business',
+  #        'Social Sciences', 'Language', 'Other']
 
-  hobby.each do |name|
-    Category.create(branch: 'hobby', name: name)
+  sports = ['Basketball', 'Football', 'Baseball', 'Softball', 'Soccer', 'Bowling', 'Cheerleading', 'Cross Country', 'Paintball', 'Dance', 'Lifting', 'Gaming', 'Other']
+  #team = ['Study', 'Development', 'Arts and Hobby', 'Other']
+
+  #hobby.each do |name|
+  #  Category.create(branch: 'hobby', name: name)
+  #end
+
+  #study.each do |name|
+  #  Category.create(branch: 'study', name: name)
+  #end
+
+  sports.each do |name|
+    Category.create(branch: 'sport', name: name)
   end
 
-  study.each do |name|
-    Category.create(branch: 'study', name: name)
-  end
-
-  team.each do |name|
-    Category.create(branch: 'team', name: name)
-  end
+  #team.each do |name|
+  #  Category.create(branch: 'team', name: name)
+  #end
 end
 
 def seed_posts

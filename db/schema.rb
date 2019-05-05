@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_25_015825) do
+ActiveRecord::Schema.define(version: 2019_05_05_004206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,16 @@ ActiveRecord::Schema.define(version: 2019_04_25_015825) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "branch"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "position"
+    t.string "number"
+    t.string "membership"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_members_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -29,6 +39,15 @@ ActiveRecord::Schema.define(version: 2019_04_25_015825) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "squads", force: :cascade do |t|
+    t.string "name"
+    t.string "sport"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_squads_on_owner_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,4 +63,6 @@ ActiveRecord::Schema.define(version: 2019_04_25_015825) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "members", "users"
+  add_foreign_key "squads", "users", column: "owner_id"
 end

@@ -1,6 +1,5 @@
 <%= bootstrap_form_for(@post) do |f| %>
   <%= f.text_field  :title,
-                    maxlength: 100,
                     placeholder: 'Title',
                     class: 'form-control',
                     required: true,
@@ -10,7 +9,7 @@
   <%= f.text_area :content,
                   rows: 6,
                   required: true,
-                  minlength: 20,
+                  minlength: 4,
                   maxlength: 1000,
                   placeholder: 'Describe what you are looking for. E.g. specific interests, expertise level, etc.',
                   class: 'form-control' %>

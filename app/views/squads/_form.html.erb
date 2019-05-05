@@ -1,0 +1,33 @@
+<%= form_with(model: squad, local: true) do |form| %>
+  <% if squad.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(squad.errors.count, "error") %> prohibited this squad from being saved:</h2>
+
+      <ul>
+      <% squad.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sport %>
+    <%= form.text_field :sport %>
+  </div>
+
+  <div class="field">
+    <%= 'Owner' %>
+    <%= current_user.id %>
+  </div>
+  <%= form.hidden_field :owner_id, value: current_user.id %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
