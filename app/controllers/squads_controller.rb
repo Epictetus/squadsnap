@@ -69,6 +69,6 @@ class SquadsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def squad_params
-      params.require(:squad).permit(:name, :sport)
+      params.require(:squad).permit(:name, :sport, :owner_id)
     end
 end

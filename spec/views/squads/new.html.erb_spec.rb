@@ -4,7 +4,8 @@ RSpec.describe "squads/new", type: :view do
   before(:each) do
     assign(:squad, Squad.new(
       :name => "MyString",
-      :sport => "MyString"
+      :sport => "MyString",
+      :owner => 1
     ))
   end
 
