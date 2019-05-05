@@ -20,7 +20,6 @@ class SquadsController < ApplicationController
 
   # GET /squads/1/edit
   def edit
-    redirect_to root_path, notice: 'You must be the owner of the squad to edit it.' unless current_user.id == @Squad.owner_id
   end
 
   # POST /squads
