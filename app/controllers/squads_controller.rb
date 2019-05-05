@@ -1,6 +1,6 @@
 class SquadsController < ApplicationController
   before_action :set_squad, only: [:show, :edit, :update, :destroy]
-  before_action :require_permission, only: [:edit, :destroy]
+  before_action :require_permission, only: [:edit, :update, :destroy]
 
   # GET /squads
   # GET /squads.json
@@ -56,7 +56,6 @@ class SquadsController < ApplicationController
   # DELETE /squads/1
   # DELETE /squads/1.json
   def destroy
-    #redirect_to root_path, notice: 'You must be the owner of the squad to edit it.' unless current_user.id == @squad.owner_id
     @squad.destroy
     respond_to do |format|
       format.html { redirect_to squads_url, notice: 'Squad was successfully destroyed.' }
