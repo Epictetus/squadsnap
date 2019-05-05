@@ -31,6 +31,9 @@ class SquadsController < ApplicationController
       if @squad.save
         format.html { redirect_to @squad, notice: 'Squad was successfully created.' }
         format.json { render :show, status: :created, location: @squad }
+
+        # create member with membership info to the squad then save
+        create_membership
       else
         format.html { render :new }
         format.json { render json: @squad.errors, status: :unprocessable_entity }
@@ -78,5 +81,11 @@ class SquadsController < ApplicationController
       if current_user.id != @squad.owner_id
         redirect_to squads_path, notice: 'You must be owner of a squad to do that action.'
       end
+    end
+
+    # Create Member row with membership information and save it
+    def create_membership
+      member = Member.new(squad: @squad, user: current_user, membership: 'owner')
+      member.save(validate: false)
     end
 end
