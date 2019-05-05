@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
-  resources :squads
+  resources :squads do
+    collection do
+      #get 'squads/index'
+      #get 'squads/edit'
+      get 'join'
+      #get 'squads/show'
+      #get 'squads/new'
+    end
+  end
   devise_for :users, :controllers => {:registrations => "registrations"}
   root to: 'pages#index'
 

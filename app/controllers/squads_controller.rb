@@ -1,5 +1,5 @@
 class SquadsController < ApplicationController
-  before_action :set_squad, only: [:show, :edit, :update, :destroy]
+  before_action :set_squad, only: [:show, :edit, :join, :update, :destroy]
   before_action :require_permission, only: [:edit, :update, :destroy]
 
   # GET /squads
@@ -22,6 +22,11 @@ class SquadsController < ApplicationController
 
   # GET /squads/1/edit
   def edit
+  end
+
+  # GET /squads/1/join
+  def join
+    create_membership_request
   end
 
   # POST /squads
@@ -88,6 +93,12 @@ class SquadsController < ApplicationController
     # Create Member row with membership information and save it
     def create_membership
       member = Member.new(squad: @squad, user: current_user, membership: 'owner')
+      member.save(validate: false)
+    end
+
+    # Create Member row with membership request information and save it
+    def create_membership_request
+      member = Member.new(squad: @squad, user: current_user, membership: 'request')
       member.save(validate: false)
     end
 end
