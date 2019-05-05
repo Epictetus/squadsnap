@@ -8,7 +8,6 @@
       <th>Name</th>
       <th>Sport</th>
       <th>Owner</th>
-      <th>Members</th>
       <th colspan="50"></th>
     </tr>
   </thead>
@@ -19,7 +18,6 @@
         <td><%= squad.name %></td>
         <td><%= squad.sport %></td>
         <td><%= User.find(squad.owner_id).name %></td>
-        <td><%= @members.size %></td>
         <td><%= link_to 'Show', squad %></td>
         <% if current_user.id == squad.owner_id %>
         <td><%= link_to 'Edit', edit_squad_path(squad) %></td>
