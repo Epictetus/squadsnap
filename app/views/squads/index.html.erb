@@ -20,7 +20,7 @@
         <td><%= squad.sport %></td>
         <td><%= User.find(squad.owner_id).name %></td>
         <td><%= link_to 'Show', squad %></td>
-        <td><%= link_to 'Join', join_squads_path(:id => squad) %></td>
+        <td><%= link_to 'Join', join_squad_path(:id => squad) %></td>
         <% if current_user.id == squad.owner_id %>
         <td><%= link_to 'Edit', edit_squad_path(squad) %></td>
         <td><%= link_to 'Destroy', squad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
