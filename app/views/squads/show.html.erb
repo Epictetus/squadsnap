@@ -33,6 +33,10 @@
     <tr>
       <td>Membership: </td>
       <td><%= member.membership %></td>
+      <% if (User.find(@squad.owner_id) == current_user) && (member.membership == 'request') %>
+      <td>Approve</td>
+      <td>Reject</td>
+      <% end %>
     </tr>
   <% end %>
   </table>
