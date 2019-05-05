@@ -12,7 +12,7 @@
 
 <p>
   <strong>Owner:</strong>
-  <%= @squad.owner_id %>
+  <%= User.find(@squad.owner_id).name %>
 </p>
 
 <%= link_to 'Edit', edit_squad_path(@squad) %> |
