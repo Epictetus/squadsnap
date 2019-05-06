@@ -3,8 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  # Associations, when a user gets deleted, all posts what the user has created will be deleted too.
-  has_many :squads
+  # Associations
   has_many :members
-  #has_many :posts, dependent: :destroy
+  has_many :squads, through: :members
 end
