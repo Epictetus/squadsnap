@@ -20,7 +20,7 @@
         <td><%= squad.sport %></td>
         <td><%= User.find(squad.owner_id).name %></td>
         <td><%= link_to 'Show', squad %></td>
-        <% if Member.joins(:squad, :user).where.not("squad = #{squad}", "user = ${current_user}") %>
+        <% if Squad.includes(:members).where( 'members.user_id' => params[:users]).exists? %>
         <td><%= link_to 'Join', join_squad_path(:id => squad) %></td>
         <% end %>
         <% if current_user.id == squad.owner_id %>
