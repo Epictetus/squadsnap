@@ -43,7 +43,8 @@
 </p>
 <% if current_user.id == @squad.owner_id %>
 <%= link_to 'Edit', edit_squad_path(@squad) %> |
-<% else %>
+<% end %>
+<% unless @squad.user_ids.include?(current_user.id) %>
 <%= link_to 'Join', join_squad_path(@squad) %> |
 <% end %>
 <%= link_to 'Back', squads_path %>
