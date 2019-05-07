@@ -34,8 +34,8 @@
       <td>Membership: </td>
       <td><%= member.membership %></td>
       <% if (User.find(@squad.owner_id) == current_user) && (member.membership == 'request') %>
-      <td>Approve</td>
-      <td>Reject</td>
+      <td><%= link_to 'Approve', approve_squad_member_path(member) %></td>
+      <td><%= link_to 'Reject', reject_squad_member_path(member) %></td>
       <% end %>
     </tr>
   <% end %>

@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
   resources :squads do
+    resources :members do
+      member do
+        get 'approve'
+        get 'reject'
+      end
+    end
     member do
       get 'join'
       #put 'join'
