@@ -21,10 +21,17 @@ class MembersController < ApplicationController
 
   # PATCH/PUT /squads/1/reject/2
   # PATCH/PUT /squads/1/reject/2.json
-  def reject(member)
+  def reject()
     respond_to do |format|
-      squad.user_ids.include?(@user).destroy
-      #format.html { redirect_to @squad, notice: "#{user.name} was rejected." }
+      @member = @squad.members.find(params[:id])
+      #@member.membership = 'rejected'
+      if @member.destroy
+        format.html { redirect_to @squad, notice: 'Rejected member.' }
+        format.json { render :show, status: :ok, location: @squad }
+      else
+        format.html { render :edit }
+        format.json { render json: @squad.errors, status: :unprocessable_entity }
+      end
     end
   end
 
