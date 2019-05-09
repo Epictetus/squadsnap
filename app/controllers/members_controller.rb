@@ -13,7 +13,7 @@ class MembersController < ApplicationController
         format.html { redirect_to @squad, notice: 'Approved user access to squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
-        format.html { render :edit }
+        format.html { render :show }
         format.json { render json: @squad.errors, status: :unprocessable_entity }
       end
     end
@@ -29,7 +29,7 @@ class MembersController < ApplicationController
         format.html { redirect_to @squad, notice: 'Rejected user access to squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
-        format.html { render :edit }
+        format.html { render :show }
         format.json { render json: @squad.errors, status: :unprocessable_entity }
       end
     end
