@@ -34,8 +34,8 @@
       <td>Membership: </td>
       <td><%= member.membership %></td>
       <% if (User.find(@squad.owner_id) == current_user) && (member.membership == 'request') %>
-      <td>Approve</td>
-      <td>Reject</td>
+      <td><%= link_to 'Approve', approve_squad_member_path(@squad, member) %></td>
+      <td><%= link_to 'Reject', reject_squad_member_path(@squad, member) %></td>
       <% end %>
     </tr>
   <% end %>
@@ -43,7 +43,8 @@
 </p>
 <% if current_user.id == @squad.owner_id %>
 <%= link_to 'Edit', edit_squad_path(@squad) %> |
-<% else %>
+<% end %>
+<% unless @squad.user_ids.include?(current_user.id) %>
 <%= link_to 'Join', join_squad_path(@squad) %> |
 <% end %>
 <%= link_to 'Back', squads_path %>
