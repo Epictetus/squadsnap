@@ -1,4 +1,4 @@
 class Member < ApplicationRecord
   belongs_to :user
-  belongs_to :squad
+  belongs_to :squad, :dependent => :destroy
 end
