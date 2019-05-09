@@ -10,7 +10,7 @@ class MembersController < ApplicationController
       @member = @squad.members.find(params[:id])
       @member.membership = 'member'
       if @member.save
-        format.html { redirect_to @squad, notice: 'Member was approved to join the squad.' }
+        format.html { redirect_to @squad, notice: 'Approved user access to squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
         format.html { render :edit }
@@ -26,7 +26,7 @@ class MembersController < ApplicationController
       @member = @squad.members.find(params[:id])
       #@member.membership = 'rejected'
       if @member.destroy
-        format.html { redirect_to @squad, notice: 'Rejected member.' }
+        format.html { redirect_to @squad, notice: 'Rejected user access to squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
         format.html { render :edit }
