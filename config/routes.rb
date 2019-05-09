@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       member do
         get 'approve'
         get 'reject'
+        get 'remove'
       end
     end
     member do
