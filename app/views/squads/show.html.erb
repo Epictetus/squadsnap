@@ -33,9 +33,12 @@
     <tr>
       <td>Membership: </td>
       <td><%= member.membership %></td>
-      <% if (User.find(@squad.owner_id) == current_user) && (member.membership == 'request') %>
+      <% if (member.membership == 'request' && (User.find(@squad.owner_id) == current_user)) %>
       <td><%= link_to 'Approve', approve_squad_member_path(@squad, member) %></td>
       <td><%= link_to 'Reject', reject_squad_member_path(@squad, member) %></td>
+      <% end %>
+      <% if (member.membership != 'owner' && (User.find(@squad.owner_id) == current_user)) %>
+      <td><%= link_to 'Remove', remove_squad_member_path(@squad, member) %></td>
       <% end %>
     </tr>
   <% end %>
