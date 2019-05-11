@@ -1,5 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
+
+import Squad from './Squad'
+
 class AllSquads extends React.Component {
   handleDelete(id) {
     this.props.handleDelete(id);

@@ -1,5 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
+
+import AllSquads from './AllSquads'
+import NewSquad from './NewSquad'
+
 class Body extends React.Component {
 
   constructor(props){

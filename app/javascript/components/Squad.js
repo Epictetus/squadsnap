@@ -1,8 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 class Squad extends React.Component {
-  getInitialState() {
-    return {editable: false}
+  
+  constructor(props){
+    super(props);
+    this.state = {
+      editable:false
+    };
   }
 
   handleEdit() {
