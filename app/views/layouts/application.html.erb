@@ -11,14 +11,11 @@
     <% end %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
     <%= render 'layouts/navigation' %>
     <%= yield %>
-    <% if false %>
-    <%= render 'layouts/application/private_conversations_windows' %>
-    <%= render 'layouts/application/group_conversations_windows' %>
-    <% end %>
   </body>
 </html>
