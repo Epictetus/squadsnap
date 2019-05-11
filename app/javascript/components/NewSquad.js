@@ -6,7 +6,7 @@ class NewSquad extends React.Component {
    var sport = this.refs.sport.value;
    var owner = this.refs.owner_id.value;
    $.ajax({
-     url: "squads",
+     url: "api/v1/squads",
      type: "POST",
      data: { squad: { name: name, sport: sport, owner: owner } },
      success: squad => {

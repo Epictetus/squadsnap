@@ -1,9 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 class Body extends React.Component {
-  //getInitialState() {
-  //    return { squads: [] }
-  //
+
   constructor(props){
     super(props);
     this.state = {
