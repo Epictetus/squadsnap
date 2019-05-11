@@ -5,6 +5,7 @@ import Squad from './Squad'
 
 class AllSquads extends React.Component {
   handleDelete(id) {
+    console.log('allsquads handle delete')
     this.props.handleDelete(id);
   }
 

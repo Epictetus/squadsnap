@@ -6,7 +6,7 @@ import NewSquad from './NewSquad'
 
 class Body extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       squads: []
@@ -14,17 +14,20 @@ class Body extends React.Component {
   }
 
   componentDidMount() {
+    console.log('body mounted')
     $.getJSON('/api/v1/squads.json', (response) => {
       this.setState({ squads: response })
     });
   }
 
   handleSubmit(squad) {
+    console.log('body handle submit')
     var newState = this.state.squads.concat(squad);
     this.setState({ squads: newState })
   }
 
   handleDelete(id) {
+    console.log('body handle  delete')
       $.ajax({
           url: `/api/v1/squads/${id}`,
           type: 'DELETE',
@@ -35,6 +38,7 @@ class Body extends React.Component {
   }
 
   handleUpdate(squad) {
+    console.log('body handle update')
     $.ajax({
             url: `/api/v1/squads/${squad.id}`,
             type: 'PUT',

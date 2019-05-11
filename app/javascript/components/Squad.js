@@ -1,25 +1,27 @@
 import React from "react"
 import PropTypes from "prop-types"
 class Squad extends React.Component {
-  
-  constructor(props){
+
+  constructor(props) {
     super(props);
     this.state = {
-      editable:false
+      editable: false
     };
   }
 
   handleEdit() {
-      if(this.state.editable) {
-          var name = this.refs.name.value;
-          var sport = this.refs.sport.value;
-          var owner = this.refs.owner_id.value;
+    console.log('squad handle edit')
 
-          var squad = {id: id , name: name , sport: sport, owner: owner};
-          this.props.handleUpdate(item);
+    if(this.state.editable) {
+      var name = this.refs.name.value;
+      var sport = this.refs.sport.value;
+      var owner = this.refs.owner_id.value;
 
-      }
-      this.setState({ editable: !this.state.editable })
+      var squad = {id: id , name: name , sport: sport, owner: owner};
+      this.props.handleUpdate(item);
+
+    }
+    this.setState({ editable: !this.state.editable })
   }
 
   render () {
@@ -31,8 +33,8 @@ class Squad extends React.Component {
         <h3>{this.props.squad.name}</h3>
         <p>Sport: {this.props.squad.sport}</p>
         <p>Owner: User.find(this.props.squad.owner_id).name %></p>
-        <button onClick={this.props.handleDelete}> Delete </button>
-        <button onClick={this.handleEdit}>
+        <button onClick={() => this.props.handleDelete}> Delete </button>
+        <button onClick={() => this.handleEdit}>
             {" "}
             {this.state.editable ? "Submit" : "Edit"}{" "}
         </button>
