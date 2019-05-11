@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  root to: 'site#index'
+  #root to: 'pages#index'  # old index, prior to using React
+
+  namespace :api do
+      namespace :v1 do
+        resources :squads, only: [:index, :create, :destroy,:update]
+      end
+    end
+
   resources :squads do
     resources :members do
       member do
@@ -15,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, :controllers => {:registrations => "registrations"}
-  root to: 'pages#index'
+  #root to: 'pages#index'
 
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
