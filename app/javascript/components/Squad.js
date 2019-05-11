@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+
 class Squad extends React.Component {
 
   constructor(props) {
@@ -18,7 +19,7 @@ class Squad extends React.Component {
       var owner = this.refs.owner_id.value;
 
       var squad = {id: id , name: name , sport: sport, owner: owner};
-      this.props.handleUpdate(item);
+      this.props.handleUpdate(squad);
 
     }
     this.setState({ editable: !this.state.editable })
