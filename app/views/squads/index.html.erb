@@ -1,37 +1,48 @@
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
 
-<p id="notice"><%= notice %></p>
+.sidenav {
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 20px;
+  left: 10px;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
 
-<h1>Squads</h1>
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #2196F3;
+  display: block;
+}
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Sport</th>
-      <th>Owner</th>
-      <th colspan="50"></th>
-    </tr>
-  </thead>
+.sidenav a:hover {
+  color: #064579;
+}
 
-  <tbody>
-    <% @squads.each do |squad| %>
-      <tr>
-        <td><%= squad.name %></td>
-        <td><%= squad.sport %></td>
-        <td><%= User.find(squad.owner_id).name %></td>
-        <td><%= link_to 'Show', squad %></td>
-        <% unless squad.user_ids.include?(current_user.id) %>
-        <td><%= link_to 'Join', join_squad_path(:id => squad) %></td>
-        <% end %>
-        <% if current_user.id == squad.owner_id %>
-        <td><%= link_to 'Edit', edit_squad_path(squad) %></td>
-        <td><%= link_to 'Destroy', squad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+.main_content {
+  margin-left: 170px; /* Same width as the sidebar + left position in px */
+  font-size: 18px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
 
-<br>
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
 
-<%= link_to 'New Squad', new_squad_path %>
+<div class="container">
+  <div class="sidenav">
+    <%= render 'site/index/side_menu' %>
+  </div><!-- sidenav -->
+  <div class="main_content">
+   <%= render 'squads/main_content' %>
+  </div> <!-- main_content -->
+</div><!-- container -->
