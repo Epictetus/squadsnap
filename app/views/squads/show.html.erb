@@ -1,4 +1,28 @@
-<p id="notice"><%= notice %></p>
+<link rel="stylesheet" type="text/css" href="https://dugout.teamsnap.com/njw/css/tinymce.css">
+
+<style>
+.w3-btn {
+  width:150px;
+}
+.w3-button {
+  width:80px;
+}
+.w3-hover-green {
+}
+</style>
+
+<br>
+
+<% if (notice != nil) %>
+<div class="w3-panel w3-display-container w3-pale-green w3-round-large w3-border">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-display-topright">X</span>
+  <h3>Notice!</h3>
+  <p><%= notice %></p>
+</div>
+<% end %>
+
+<br>
 
 <p>
   <strong>Name:</strong>
@@ -20,34 +44,35 @@
 </p>
 
 <p>
-  <table>
+  <table class="w3-table-all w3-hoverable">
   <% @members.each_with_index do |member, index| %>
-    <tr>
-      <td>Index</td>
-      <td><%= index %></td>
+    <tr class="w3-hover">
+      <td>Name</td>
+      <td>Membership</td>
     </tr>
-    <tr>
-      <td>Name: </td>
+    <tr class="w3-hover">
       <td><%= member.user.name %></td>
-    </tr>
-    <tr>
-      <td>Membership: </td>
       <td><%= member.membership %></td>
       <% if (member.membership == 'request' && (User.find(@squad.owner_id) == current_user)) %>
-      <td><%= link_to 'Approve', approve_squad_member_path(@squad, member) %></td>
-      <td><%= link_to 'Reject', reject_squad_member_path(@squad, member) %></td>
+      <td><%= link_to '<button class="w3-button">Approve</button>'.html_safe, approve_squad_member_path(@squad, member) %></td>
+      <td><%= link_to '<button class="w3-button">Reject</button>'.html_safe, reject_squad_member_path(@squad, member) %></td>
+      <% elsif %>
+      <td></td>
+      <td></td>
       <% end %>
       <% if (member.membership != 'owner' && (User.find(@squad.owner_id) == current_user)) %>
-      <td><%= link_to 'Remove', remove_squad_member_path(@squad, member) %></td>
+      <td><%= link_to '<button class="w3-button">Remove</button>'.html_safe, remove_squad_member_path(@squad, member) %></td>
+      <% elsif %>
+      <td></td>
       <% end %>
     </tr>
   <% end %>
   </table>
 </p>
 <% if current_user.id == @squad.owner_id %>
-<%= link_to 'Edit', edit_squad_path(@squad) %> |
+<%= link_to '<button class="actions">Edit</button>'.html_safe, edit_squad_path(@squad) %>
 <% end %>
 <% unless @squad.user_ids.include?(current_user.id) %>
-<%= link_to 'Join', join_squad_path(@squad) %> |
+<%= link_to '<button class="actions">Join</button>'.html_safe, join_squad_path(@squad) %>
 <% end %>
-<%= link_to 'Back', squads_path %>
+<%= link_to '<button class="actions">Back</button>'.html_safe, squads_path %>

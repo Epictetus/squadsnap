@@ -1,5 +1,64 @@
-<div class="container">
-  <div class="main_content">
-   <%= render 'squads/main_content' %>
-  </div> <!-- main_content -->
-</div><!-- container -->
+<style>
+.w3-btn {
+  width:150px;
+}
+.w3-button {
+  width:80px;
+}
+.w3-hover-green {
+}
+</style>
+
+<br>
+
+<% if (notice != nil) %>
+<div class="w3-panel w3-display-container w3-pale-green w3-round-large w3-border">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-display-topright">X</span>
+  <h3>Notice!</h3>
+  <p><%= notice %></p>
+</div>
+<% end %>
+
+<br>
+
+<%= link_to '<button class="w3-btn w3-teal">Create a Squad</button>'.html_safe, new_squad_path %>
+
+<br>
+
+<h1 id="table-header">Squads</h1>
+
+<table class="w3-table-all w3-hoverable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Sport</th>
+      <th>Owner</th>
+      <th colspan="50"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @squads.each do |squad| %>
+      <tr class="w3-hover">
+        <td><%= squad.name %></td>
+        <td><%= squad.sport %></td>
+        <td><%= User.find(squad.owner_id).name %></td>
+
+        <td><%= link_to '<button class="w3-button">Show</button>'.html_safe, squad %></td>
+        <% unless squad.user_ids.include?(current_user.id) %>
+        <td><%= link_to '<button class="w3-button">Join</button>'.html_safe, join_squad_path(:id => squad) %></td>
+        <% else %>
+        <td></td>
+        <% end %>
+        <% if current_user.id == squad.owner_id %>
+        <td><%= link_to '<button class="w3-button">Edit</button>'.html_safe, edit_squad_path(squad) %></td>
+        <td><%= link_to '<button class="w3-button">Destroy</button>'.html_safe, squad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% elsif %>
+        <td></td>
+        <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

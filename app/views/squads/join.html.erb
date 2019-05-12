@@ -1,6 +1,28 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Requested Access To Squad</h1>
+<style>
+.w3-btn {
+  width:150px;
+}
+.w3-button {
+  width:80px;
+}
+.w3-hover-green {
+}
+</style>
 
-<%= link_to 'Show', @squad %> |
-<%= link_to 'Back', squads_path %>
+<br>
+
+<% if (notice != nil) %>
+<div class="w3-panel w3-display-container w3-pale-green w3-round-large w3-border">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-display-topright">X</span>
+  <h3>Notice!</h3>
+  <p><%= notice %></p>
+</div>
+<% end %>
+
+<br>
+
+<div class="actions">
+  <%= link_to '<button class="actions">Show</button>'.html_safe, @squad %> <%= link_to '<button class="actions">Back</button>'.html_safe, squads_path %>
+</div>
