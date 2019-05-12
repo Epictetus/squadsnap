@@ -1,4 +1,7 @@
-<%= form_with(model: squad, local: true) do |form| %>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<%= form_with(model: squad, local: true, class: "w3-container") do |form| %>
   <% if squad.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(squad.errors.count, "error") %> prohibited this squad from being saved:</h2>
@@ -11,23 +14,31 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="w3-text-teal">
     <%= form.label :name %>
+  </div>
+  <div class="w3-input w3-border w3-light-grey">
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="w3-text-teal">
     <%= form.label :sport %>
+  </div>
+  <div class="w3-input w3-border w3-light-grey">
     <%= form.text_field :sport %>
   </div>
 
-  <div class="field">
+  <div class="w3-text-teal">
     <%= 'Owner' %>
+  </div>
+  <div class="w3-input w3-border w3-light-grey">
     <%= current_user.id %>
   </div>
   <%= form.hidden_field :owner_id, value: current_user.id %>
 
+  <br />
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit %> <%= link_to '<button class="actions">Back</button>'.html_safe, squads_path %>
   </div>
 <% end %>
