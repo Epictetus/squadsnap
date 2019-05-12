@@ -33,7 +33,7 @@ class Squad extends React.Component {
       <React.Fragment>
         <h3>{this.props.squad.name}</h3>
         <p>Sport: {this.props.squad.sport}</p>
-        <p>Owner: User.find(this.props.squad.owner_id).name %></p>
+        <p>Owner: {this.props.squad.owner_id}</p>
         <button onClick={() => this.props.handleDelete}> Delete </button>
         <button onClick={() => this.handleEdit}>
             {" "}
