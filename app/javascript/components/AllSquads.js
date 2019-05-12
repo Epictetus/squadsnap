@@ -9,8 +9,8 @@ class AllSquads extends React.Component {
     this.props.handleDelete(id);
   }
 
-  onUpdate(item) {
-      this.props.onUpdate(item);
+  onUpdate(squad) {
+      this.props.onUpdate(squad);
   }
 
   render () {
