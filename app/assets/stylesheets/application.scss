@@ -12,19 +12,21 @@
  *
  */
 
- // Bootstrap
- //@import "bootstrap-sprockets";
- @import "bootstrap";
+// Bootstrap
+@import "bootstrap";
 
- // Variables
- @import "base/variables";
+// Variables
+@import "base/variables";
 
- // Default styles
- @import "base/default";
+// Default styles
+@import "base/default";
 
- // Partials - main css files
- @import "partials/*";
- @import "partials/layout/*";
+// Partials - main css files
+@import "partials/*";
+@import "partials/layout/*";
 
- // Media queries for a responsive design
- @import "responsive/*";
+// Media queries for a responsive design
+@import "responsive/*";
+
+// Squad Design
+@import "squads";

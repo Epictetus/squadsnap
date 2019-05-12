@@ -1,13 +1,3 @@
-<style>
-.w3-btn {
-  width:150px;
-}
-.w3-button {
-  width:80px;
-}
-.w3-hover-green {
-}
-</style>
 
 <br>
 
@@ -20,13 +10,17 @@
 </div>
 <% end %>
 
-<br>
+<br />
+<div class="menu-buttons">
+  <%= link_to '<button class="actions">Create a Squad</button>'.html_safe, new_squad_path %>
+</div>
+<br />
 
-<%= link_to '<button class="w3-btn w3-teal">Create a Squad</button>'.html_safe, new_squad_path %>
-
-<br>
-
-<h1 id="table-header">Squads</h1>
+<br />
+<div class="w3-container w3-teal">
+  <h2>Squads</h2>
+</div>
+<br />
 
 <table class="w3-table-all w3-hoverable">
   <thead>
