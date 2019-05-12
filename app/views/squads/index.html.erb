@@ -45,7 +45,7 @@
         <td><%= squad.sport %></td>
         <td><%= User.find(squad.owner_id).name %></td>
 
-        <td><%= link_to '<button class="w3-button">Show</button>'.html_safe, squad %></td>
+        <td><%= link_to '<button class="w3-button">Roster</button>'.html_safe, squad %></td>
         <% unless squad.user_ids.include?(current_user.id) %>
         <td><%= link_to '<button class="w3-button">Join</button>'.html_safe, join_squad_path(:id => squad) %></td>
         <% else %>
