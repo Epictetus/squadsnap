@@ -1,47 +1,4 @@
-<style>
-body {
-  font-family: "Lato", sans-serif;
-}
-
-.sidenav {
-  width: 160px;
-  position: fixed;
-  z-index: 1;
-  top: 20px;
-  left: 10px;
-  background: #eee;
-  overflow-x: hidden;
-  padding: 8px 0;
-}
-
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 16px;
-  color: #2196F3;
-  display: block;
-}
-
-.sidenav a:hover {
-  color: #064579;
-}
-
-.main_content {
-  margin-left: 170px; /* Same width as the sidebar + left position in px */
-  font-size: 18px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
-
 <div class="container">
-  <div class="side-menu">
-    <%= render 'site/index/side_menu' %>
-  </div><!-- side-menu -->
   <div class="main_content">
    <%= render 'squads/main_content' %>
   </div> <!-- main_content -->
