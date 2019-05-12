@@ -1,7 +1,4 @@
 class PagesController < ApplicationController
   def index
-    @hobby_posts = Post.by_branch('hobby').limit(8)
-    @study_posts = Post.by_branch('study').limit(8)
-    #@squads = Squad.all
   end
 end

@@ -6,7 +6,7 @@ class SquadsController < ApplicationController
   # GET /squads.json
   def index
     @squads = Squad.all
-    @members = Member.all
+    #@members = Member.all
   end
 
   # GET /squads/1
