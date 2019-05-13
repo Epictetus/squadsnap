@@ -18,15 +18,15 @@
 // Variables
 @import "base/variables";
 
-// Default styles
-@import "base/default";
+// Responsive design for pc and mobile
+@import "responsive/*";
 
 // Partials - main css files
 @import "partials/*";
 @import "partials/layout/*";
 
-// Media queries for a responsive design
-@import "responsive/*";
+// Scaffold Defaults
+@import "scaffolds";
 
 // Squad Design
 @import "squads";

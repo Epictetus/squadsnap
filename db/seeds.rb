@@ -6,8 +6,42 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-def seed_users
-  user_id = 0
+def seed_my_users
+  # Create my normal user id: 1
+  User.create(
+    name: "weteamsteve",
+    email: "weteamsteve@gmail.com",
+    password: '12345',
+    password_confirmation: '12345'
+  )
+
+  # Create my secondary user id: 2
+  User.create(
+    name: "ashley",
+    email: "ashley@weteamsteve.com",
+    password: '123456',
+    password_confirmation: '123456'
+  )
+end
+
+def seed_my_squads
+  # Create a squad owned by my normal user
+  Squad.create(
+    name: "Boston Celtics",
+    sport: "Basketball",
+    owner_id: '1'
+  )
+
+  # Create a squad owned by secondary user
+  Squad.create(
+    name: "New England Patriots",
+    sport: "Football",
+    owner_id: '2'
+  )
+end
+
+def seed_fake_users
+  user_id = 3
   10.times do
     User.create(
       name: "test#{user_id}",
@@ -15,55 +49,36 @@ def seed_users
       password: '123456',
       password_confirmation: '123456'
     )
-    user_id = user_id + 1
+    user_id += 1
   end
 end
 
-
-def seed_categories
-  #hobby = ['Arts', 'Crafts', 'Sports', 'Sciences', 'Collecting', 'Reading', 'Other']
-  #study = ['Arts and Humanities', 'Physical Science and Engineering', 'Math and Logic',
-  #        'Computer Science', 'Data Science', 'Economics and Finance', 'Business',
-  #        'Social Sciences', 'Language', 'Other']
-
-  sports = ['Basketball', 'Football', 'Baseball', 'Softball', 'Soccer', 'Bowling', 'Cheerleading', 'Cross Country', 'Paintball', 'Dance', 'Lifting', 'Gaming', 'Other']
-  #team = ['Study', 'Development', 'Arts and Hobby', 'Other']
-
-  #hobby.each do |name|
-  #  Category.create(branch: 'hobby', name: name)
-  #end
-
-  #study.each do |name|
-  #  Category.create(branch: 'study', name: name)
-  #end
-
-  sports.each do |name|
-    Category.create(branch: 'sport', name: name)
+def seed_fake_squads
+  num = 0
+  3.times do
+    Squad.create(
+      name: "test_squad#{num}",
+      sport: "test_sport#{num}",
+      owner_id: '1'
+    )
+    num += 1
   end
 
-  #team.each do |name|
-  #  Category.create(branch: 'team', name: name)
-  #end
-end
-
-def seed_posts
-  categories = Category.all
-
-  categories.each do |category|
-    5.times do
-      Post.create(
-        title: Faker::Lorem.sentences[0],
-        content: Faker::Lorem.sentences[0],
-        user_id: rand(1..9),
-        category_id: category.id
-      )
-    end
+  num = 0
+  3.times do
+    Squad.create(
+      name: "other_squad#{num}",
+      sport: "other_sport#{num}",
+      owner_id: '2'
+    )
+    num += 1
   end
 end
 
-if Rails.env.development?
-  seed_users
-  seed_posts
-end
+seed_my_users
+seed_fake_users
 
-seed_categories
+#if Rails.env.development?
+  #seed_my_squads
+  #seed_fake_squads
+#end
