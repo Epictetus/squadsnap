@@ -24,34 +24,24 @@ def seed_my_data
   )
 
   # Create a squad owned by my normal user
-  Squad.create(
+  @celtics = Squad.create(
     name: "Boston Celtics",
     sport: "Basketball",
     owner_id: @weteamsteve.id
   )
 
+  # Create membership info of users on squad
+  Member.create(squad: @celtics, user: @weteamsteve, membership: 'owner')
+
   # Create a squad owned by secondary user
-  Squad.create(
+  @patriots = Squad.create(
     name: "New England Patriots",
     sport: "Football",
     owner_id: @ashley.id
   )
-end
 
-def seed_my_squads
-  # Create a squad owned by my normal user
-  Squad.create(
-    name: "Boston Celtics",
-    sport: "Basketball",
-    owner_id: '1'
-  )
-
-  # Create a squad owned by secondary user
-  Squad.create(
-    name: "New England Patriots",
-    sport: "Football",
-    owner_id: '2'
-  )
+  # Create membership info of users on squad
+  Member.create(squad: @patriots, user: @ashley, membership: 'owner')
 end
 
 def seed_fake_users
@@ -70,21 +60,27 @@ end
 def seed_fake_squads
   num = 0
   3.times do
-    Squad.create(
+    @squad = Squad.create(
       name: "test_squad#{num}",
       sport: "test_sport#{num}",
       owner_id: '1'
     )
+    # Create membership info of users on squad
+    Member.create(squad: @squad, user: @weteamsteve, membership: 'owner')
+
     num += 1
   end
 
   num = 0
   3.times do
-    Squad.create(
+    @squad = Squad.create(
       name: "other_squad#{num}",
       sport: "other_sport#{num}",
       owner_id: '2'
     )
+    # Create membership info of users on squad
+    Member.create(squad: @squad, user: @ashley, membership: 'owner')
+
     num += 1
   end
 end
