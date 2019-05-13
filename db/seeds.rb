@@ -6,21 +6,35 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-def seed_my_users
+def seed_my_data
   # Create my normal user id: 1
-  User.create(
+  @weteamsteve = User.create(
     name: "weteamsteve",
     email: "weteamsteve@gmail.com",
-    password: '12345',
-    password_confirmation: '12345'
+    password: '123456',
+    password_confirmation: '123456'
   )
 
   # Create my secondary user id: 2
-  User.create(
+  @ashley = User.create(
     name: "ashley",
     email: "ashley@weteamsteve.com",
     password: '123456',
     password_confirmation: '123456'
+  )
+
+  # Create a squad owned by my normal user
+  Squad.create(
+    name: "Boston Celtics",
+    sport: "Basketball",
+    owner_id: @weteamsteve.id
+  )
+
+  # Create a squad owned by secondary user
+  Squad.create(
+    name: "New England Patriots",
+    sport: "Football",
+    owner_id: @ashley.id
   )
 end
 
@@ -75,8 +89,9 @@ def seed_fake_squads
   end
 end
 
-seed_my_users
+seed_my_data
 seed_fake_users
+seed_fake_squads
 
 #if Rails.env.development?
   #seed_my_squads
