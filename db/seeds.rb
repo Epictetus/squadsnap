@@ -90,6 +90,5 @@ seed_fake_users
 seed_fake_squads
 
 #if Rails.env.development?
-  #seed_my_squads
   #seed_fake_squads
 #end
