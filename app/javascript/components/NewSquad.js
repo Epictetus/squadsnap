@@ -26,7 +26,7 @@ class NewSquad extends React.Component {
       <React.Fragment>
         <input ref="name" placeholder="Enter the name of the item" />
         <input ref="sport" placeholder="Enter a sport" />
-        <input ref="owner_id" placeholder="{current_user.id}" />
+        <input ref="owner_id" placeholder="Owner ID" />
         <button onClick={() => context.handleClick()}>Submit</button>
       </React.Fragment>
     );
