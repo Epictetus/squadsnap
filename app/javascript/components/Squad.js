@@ -33,6 +33,7 @@ class Squad extends React.Component {
     return (
       <React.Fragment>
         <h3>{this.props.squad.name}</h3>
+        <p>Squad ID: {this.props.squad.id}</p>
         <p>Sport: {this.props.squad.sport}</p>
         <p>Owner: {this.props.squad.owner_id}</p>
         <button onClick={() => this.props.handleDelete()}>Delete</button>
