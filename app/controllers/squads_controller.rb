@@ -6,7 +6,6 @@ class SquadsController < ApplicationController
   # GET /squads.json
   def index
     @squads = Squad.all
-    #@members = Member.all
   end
 
   # GET /squads/1
@@ -70,6 +69,12 @@ class SquadsController < ApplicationController
       format.html { redirect_to squads_url, notice: 'Squad was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # reset_db_path
+  def reset_db
+    [User, Member, Squad].each { |model| model.truncate! }
+    Rails.application.load_seed
   end
 
   private
