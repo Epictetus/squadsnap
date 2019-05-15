@@ -23,8 +23,8 @@ class AllSquads extends React.Component {
         return (
             <div key={squad.id}>
               <Squad squad={squad}
-                   handleDelete={() => context.handleDelete.bind(this, squad.id)}
-                   handleUpdate={() => context.onUpdate}/>
+                   handleDelete={this.handleDelete.bind(this, squad.id)}
+                   handleUpdate={this.onUpdate}/>
             </div>
         )
     });
