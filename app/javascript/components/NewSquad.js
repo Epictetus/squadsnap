@@ -17,12 +17,15 @@ class NewSquad extends React.Component {
  }
 
   render () {
+
+    var context = this;
+
     return (
       <React.Fragment>
         <input ref="name" placeholder="Enter the name of the item" />
         <input ref="sport" placeholder="Enter a sport" />
         <input ref="owner_id" placeholder="{current_user.id}" />
-        <button onClick={this.handleClick}>Submit</button>
+        <button onClick={() => context.handleClick()}>Submit</button>
       </React.Fragment>
     );
   }
