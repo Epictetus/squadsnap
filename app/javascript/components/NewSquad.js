@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 class NewSquad extends React.Component {
   handleClick() {
-   console.log('newsquad handleclick')
+   console.log('NewSquad handleClick')
    var name = this.refs.name.value;
    var sport = this.refs.sport.value;
    var owner = this.refs.owner_id.value;
@@ -18,9 +18,7 @@ class NewSquad extends React.Component {
  }
 
   render () {
-
-    console.log('newsquad render')
-
+    console.log('NewSquad render')
 
     var context = this;
 

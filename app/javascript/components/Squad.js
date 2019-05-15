@@ -11,7 +11,7 @@ class Squad extends React.Component {
   }
 
   handleEdit() {
-    console.log('squad handle edit')
+    console.log('Squad handleEdit')
 
     if(this.state.editable) {
       var name = this.refs.name.value;
@@ -26,6 +26,7 @@ class Squad extends React.Component {
   }
 
   render () {
+    console.log('Squad render')
     var name = this.state.editable ? <input type='text' ref='name' defaultValue={this.props.squad.name} /> : <h3>{this.props.squad.name}</h3>;
     var sport = this.state.editable ? <input type='text' ref='sport' defaultValue={this.props.squad.sport} />: <p>{this.props.squad.sport}</p>
 
@@ -34,8 +35,8 @@ class Squad extends React.Component {
         <h3>{this.props.squad.name}</h3>
         <p>Sport: {this.props.squad.sport}</p>
         <p>Owner: {this.props.squad.owner_id}</p>
-        <button onClick={() => this.props.handleDelete}> Delete </button>
-        <button onClick={() => this.handleEdit}>
+        <button onClick={() => this.props.handleDelete()}>Delete</button>
+        <button onClick={() => this.handleEdit()}>
             {" "}
             {this.state.editable ? "Submit" : "Edit"}{" "}
         </button>
