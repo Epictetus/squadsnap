@@ -77,8 +77,10 @@ class SquadsController < ApplicationController
       logger.info "Executing reset_db, we are user_id 1"
       [User, Member, Squad].each { |model| model.truncate! }
       Rails.application.load_seed
+      redirect_to squads_path, notice: 'Database has been reset.'
     elsif
       logger.info "Attempted to reset_db, not user_id 1"
+      redirect_to squads_path, notice: 'You must be user_id 1 to do that action.'
     end
   end
 
