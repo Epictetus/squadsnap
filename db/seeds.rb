@@ -32,6 +32,7 @@ def seed_my_data
 
   # Create membership info of users on squad
   Member.create(squad: @celtics, user: @weteamsteve, membership: 'owner')
+  Member.create(squad: @celtics, user: @ashley, membership: 'request')
 
   # Create a squad owned by secondary user
   @patriots = Squad.create(
@@ -42,6 +43,7 @@ def seed_my_data
 
   # Create membership info of users on squad
   Member.create(squad: @patriots, user: @ashley, membership: 'owner')
+  Member.create(squad: @celtics, user: @weteamsteve, membership: 'request')
 end
 
 def seed_fake_users

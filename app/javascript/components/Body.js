@@ -14,20 +14,23 @@ class Body extends React.Component {
   }
 
   componentDidMount() {
-    console.log('body mounted')
+    console.log('Body componentDidMounted')
+
     $.getJSON('/api/v1/squads.json', (response) => {
       this.setState({ squads: response })
     });
   }
 
   handleSubmit(squad) {
-    console.log('body handle submit')
+    console.log('Body handleSubmit (squad: ' + squad + ')')
+
     var newState = this.state.squads.concat(squad);
     this.setState({ squads: newState })
   }
 
   handleDelete(id) {
-    console.log('body handle  delete')
+    console.log('Body handleDelete (id: ' + id + ')')
+
       $.ajax({
           url: `/api/v1/squads/${id}`,
           type: 'DELETE',
@@ -38,7 +41,8 @@ class Body extends React.Component {
   }
 
   handleUpdate(squad) {
-    console.log('body handle update')
+    console.log('Body handleUpdate (squad: ' + squad + ')')
+
     $.ajax({
             url: `/api/v1/squads/${squad.id}`,
             type: 'PUT',
@@ -57,6 +61,7 @@ class Body extends React.Component {
   }
 
   removeItemClient(id) {
+    console.log('Body removeItemClient (id: ' + id + ')')
     var newSquads = this.state.squads.filter((squad) => {
         return squad.id != id;
     });
@@ -65,10 +70,14 @@ class Body extends React.Component {
   }
 
   render () {
+    console.log('Body render')
+
+    var context = this;
+
     return (
       <React.Fragment>
         <NewSquad handleSubmit={this.handleSubmit} />
-        <AllSquads squads={this.state.squads}  handleDelete={this.handleDelete} onUpdate={this.handleUpdate}/>
+        <AllSquads squads={this.state.squads}  handleDelete={() => context.handleDelete()} onUpdate={() => context.handleUpdate()}/>
       </React.Fragment>
     );
   }
