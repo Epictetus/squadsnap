@@ -73,8 +73,13 @@ class SquadsController < ApplicationController
 
   # reset_db_path
   def reset_db
-    [User, Member, Squad].each { |model| model.truncate! }
-    Rails.application.load_seed
+    if current_user.id == '1'
+      logger.info "Executing reset_db, we are user_id 1"
+      [User, Member, Squad].each { |model| model.truncate! }
+      Rails.application.load_seed
+    elsif
+      logger.info "Attempted to reset_db, not user_id 1"
+    end
   end
 
   private
