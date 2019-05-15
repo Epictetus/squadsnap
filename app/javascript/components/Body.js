@@ -22,14 +22,14 @@ class Body extends React.Component {
   }
 
   handleSubmit(squad) {
-    console.log('Body handleSubmit')
+    console.log('Body handleSubmit (squad: ' + squad + ')')
 
     var newState = this.state.squads.concat(squad);
     this.setState({ squads: newState })
   }
 
   handleDelete(id) {
-    console.log('Body handleDelete')
+    console.log('Body handleDelete (id: ' + id + ')')
 
       $.ajax({
           url: `/api/v1/squads/${id}`,
@@ -41,7 +41,7 @@ class Body extends React.Component {
   }
 
   handleUpdate(squad) {
-    console.log('Body handleUpdate')
+    console.log('Body handleUpdate (squad: ' + squad + ')')
 
     $.ajax({
             url: `/api/v1/squads/${squad.id}`,
@@ -61,7 +61,7 @@ class Body extends React.Component {
   }
 
   removeItemClient(id) {
-    console.log('Body removeItemClient')
+    console.log('Body removeItemClient (id: ' + id + ')')
     var newSquads = this.state.squads.filter((squad) => {
         return squad.id != id;
     });
