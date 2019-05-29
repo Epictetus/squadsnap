@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :member do
     user { nil }
     team { nil }
-    position { "MyString" }
-    number { "MyString" }
+    position { "MemberPosition" }
+    number { "MemberNumber" }
   end
 end

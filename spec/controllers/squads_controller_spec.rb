@@ -25,16 +25,31 @@ require 'rails_helper'
 
 RSpec.describe SquadsController, type: :controller do
 
+  # Create user for owner_id
+  let(:user) { User.create!(name: 'user1', email: 'user1@squadsnap.com', password: '123456', password_confirmation: '123456') }
+
+
   # This should return the minimal set of attributes required to create a valid
   # Squad. As you add validations to Squad, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    # Add a hash of attributes valid for your model
+    {
+      name: 'squad_name',
+      sport: 'squad_sport',
+      owner_id: user.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    # Add a hash of attributes invalid for your model
+    {
+      name: 'squad_name',
+      sport: 'squad_sport'
+      # invalid attributes, did not include owner_id. every squad will have an owner
+    }
   }
+
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -64,6 +79,7 @@ RSpec.describe SquadsController, type: :controller do
     end
   end
 
+  # check out https://github.com/plataformatec/devise/wiki/How-To:-Test-with-Capybara to get by current_user.id
   describe "GET #edit" do
     it "returns a success response" do
       squad = Squad.create! valid_attributes
@@ -96,8 +112,17 @@ RSpec.describe SquadsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
+
+      # Create user for owner_id
+      #let(:user) { User.create! }
+
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        # Add a hash of attributes valid for your model
+        {
+          name: 'squad_name',
+          sport: 'squad_sport',
+          owner_id: user.id
+        }
       }
 
       it "updates the requested squad" do

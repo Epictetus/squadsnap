@@ -85,8 +85,10 @@ RSpec.configure do |config|
   require 'factory_bot_rails'
   require 'capybara/rspec'
 
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include FactoryBot::Syntax::Methods
+  config.include Warden::Test::Helpers
   Capybara.default_max_wait_time = 10
   Capybara.javascript_driver = :poltergeist
   Capybara.server = :puma
