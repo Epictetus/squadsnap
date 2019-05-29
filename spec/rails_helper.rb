@@ -45,6 +45,9 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
+    # Devise authentication within each spec
+    user = FactoryBot.create(:user)
+    login_as(user, :scope => :user)
   end
 
   config.before(:each, :js => true) do
@@ -57,6 +60,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+    Warden.test_reset!
   end
 
   # RSpec Rails can automatically mix in different behaviours to your tests

@@ -28,7 +28,6 @@ RSpec.describe SquadsController, type: :controller do
   # Create user for owner_id
   let(:user) { User.create!(name: 'user1', email: 'user1@squadsnap.com', password: '123456', password_confirmation: '123456') }
 
-
   # This should return the minimal set of attributes required to create a valid
   # Squad. As you add validations to Squad, be sure to
   # adjust the attributes here as well.
@@ -44,9 +43,8 @@ RSpec.describe SquadsController, type: :controller do
   let(:invalid_attributes) {
     # Add a hash of attributes invalid for your model
     {
-      name: 'squad_name',
-      sport: 'squad_sport'
-      # invalid attributes, did not include owner_id. every squad will have an owner
+      invalid_stuff: 'one',
+      unpermitted_stuff: 'one'
     }
   }
 
@@ -79,9 +77,9 @@ RSpec.describe SquadsController, type: :controller do
     end
   end
 
-  # check out https://github.com/plataformatec/devise/wiki/How-To:-Test-with-Capybara to get by current_user.id
   describe "GET #edit" do
     it "returns a success response" do
+      allow(controller).to receive(:current_user).and_return(user)
       squad = Squad.create! valid_attributes
       get :edit, params: {id: squad.to_param}, session: valid_session
       expect(response).to be_successful
@@ -112,10 +110,6 @@ RSpec.describe SquadsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-
-      # Create user for owner_id
-      #let(:user) { User.create! }
-
       let(:new_attributes) {
         # Add a hash of attributes valid for your model
         {
@@ -126,6 +120,7 @@ RSpec.describe SquadsController, type: :controller do
       }
 
       it "updates the requested squad" do
+        allow(controller).to receive(:current_user).and_return(user)
         squad = Squad.create! valid_attributes
         put :update, params: {id: squad.to_param, squad: new_attributes}, session: valid_session
         squad.reload
@@ -133,6 +128,7 @@ RSpec.describe SquadsController, type: :controller do
       end
 
       it "redirects to the squad" do
+        allow(controller).to receive(:current_user).and_return(user)
         squad = Squad.create! valid_attributes
         put :update, params: {id: squad.to_param, squad: valid_attributes}, session: valid_session
         expect(response).to redirect_to(squad)
@@ -141,6 +137,7 @@ RSpec.describe SquadsController, type: :controller do
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
+        allow(controller).to receive(:current_user).and_return(user)
         squad = Squad.create! valid_attributes
         put :update, params: {id: squad.to_param, squad: invalid_attributes}, session: valid_session
         expect(response).to be_successful
@@ -150,6 +147,7 @@ RSpec.describe SquadsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested squad" do
+      allow(controller).to receive(:current_user).and_return(user)
       squad = Squad.create! valid_attributes
       expect {
         delete :destroy, params: {id: squad.to_param}, session: valid_session
@@ -157,6 +155,7 @@ RSpec.describe SquadsController, type: :controller do
     end
 
     it "redirects to the squads list" do
+      allow(controller).to receive(:current_user).and_return(user)
       squad = Squad.create! valid_attributes
       delete :destroy, params: {id: squad.to_param}, session: valid_session
       expect(response).to redirect_to(squads_url)
