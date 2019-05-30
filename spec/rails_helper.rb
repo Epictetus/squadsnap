@@ -96,4 +96,9 @@ RSpec.configure do |config|
   Capybara.default_max_wait_time = 10
   Capybara.javascript_driver = :poltergeist
   Capybara.server = :puma
+
+  options = {js_errors: false}
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, options)
+  end
 end
