@@ -13,7 +13,9 @@
 <br />
 <div class="menu-buttons">
   <%= link_to '<button class="actions">Create a Squad</button>'.html_safe, new_squad_path %>
+  <%= if Rails.env.development? %>
   <%= link_to '<button class="actions">Reset database</button>'.html_safe, reset_db_path, data: { confirm: 'Are you sure?' } %>
+  <%= end %>
 </div>
 <br />
 
