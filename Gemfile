@@ -65,6 +65,8 @@ group :development, :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'database_cleaner'
+
+  gem 'simplecov', require: false # code coverage, open up coverage/index.html
 end
 
 group :development do
