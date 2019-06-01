@@ -2,6 +2,8 @@
   "name": "squadsnap",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^1.0.0",
+    "@material-ui/icons": "^1.0.0",
     "@babel/preset-react": "^7.0.0",
     "@rails/webpacker": "^4.0.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
