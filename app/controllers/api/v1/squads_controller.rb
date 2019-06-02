@@ -2,6 +2,7 @@ module Api
   module V1
     class SquadsController < BaseController
       #class Api::V1::SquadsController < Api::V1::BaseController
+      before_action :authorize_user!
       before_action :set_squad, only: [:show, :edit, :join, :update, :destroy]
       before_action :require_permission, only: [:edit, :update, :destroy]
 
@@ -91,6 +92,12 @@ module Api
       #helper_method :reset_db
 
       private
+        def authorize_user!
+          if !current_user
+            redirect_to login_path, notice: "You must be logged in to access to this page"
+          end
+        end
+
         # Use callbacks to share common setup or constraints between actions.
         def set_squad
           @squad = Squad.find(params[:id])
