@@ -3,23 +3,24 @@ Rails.application.routes.draw do
   root to: 'site#index'
 
   namespace :api do
-      namespace :v1 do
-        resources :squads do
-          resources :members do
-            member do
-              get 'approve'
-              get 'reject'
-              get 'remove'
-              get 'demote'
-            end
-          end
+    namespace :v1 do
+      resources :squads do
+        resources :members do
           member do
-            get 'join'
+            get 'approve'
+            get 'reject'
+            get 'remove'
+            get 'demote'
           end
+        end
+        member do
+          get 'join'
         end
       end
     end
+  end
 
+  # Devise User Authentication
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   devise_scope :user do
