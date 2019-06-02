@@ -62,7 +62,7 @@ Rails.application.configure do
   # Configure mailer delivery method as SMTP, this is what gmail uses
   config.action_mailer.delivery_method = :smtp
 
-  # Configure action mailer delivery smtp Settings
+  # Configure action mailer delivery smtp settings for GMail
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
@@ -72,6 +72,16 @@ Rails.application.configure do
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
   }
+  # Configure action mailer delivery smtp settings for AWS
+  #config.action_mailer.smtp_settings = {
+  #  address: "email-smtp.us-east-1.amazonaws.com",
+  #  port: 587,
+  #  domain: "amazonaws.com",
+  #  enable_starttls_auto: true,
+  #  :user_name => ENV["SES_SMTP_USERNAME"],
+  #  :password => ENV["SES_SMTP_PASSWORD"],
+  #  :authentication => :login,
+  #}
 
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
 end
