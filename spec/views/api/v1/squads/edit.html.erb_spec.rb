@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "squads/new", type: :view do
+RSpec.describe "/api/v1/squads/edit", type: :view do
 
   # Create user for owner_id
   let(:user) { User.create!(name: 'user1', email: 'user1@squadsnap.com', password: '123456', password_confirmation: '123456') }
@@ -15,11 +15,10 @@ RSpec.describe "squads/new", type: :view do
     Member.create!(squad: @squad, user: user, membership: 'owner')
   end
 
-  it "renders new squad form" do
+  it "renders the edit squad form" do
     allow(view).to receive(:current_user).and_return(user)
     render
-    # TODO this is probably a problem consistent with require_params, another TODO
-    assert_select "form[action=?][method=?]", api_squads_path, "post" do
+    assert_select "form[action=?][method=?]", squad_path(@squad), "post" do
       assert_select "input[name=?]", "squad[name]"
       assert_select "input[name=?]", "squad[sport]"
     end
