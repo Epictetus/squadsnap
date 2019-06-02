@@ -12,18 +12,17 @@ class RequestMembershipMailer < ApplicationMailer
     #Rails.logger.debug("!!! Member.user inspect: #{member.user.inspect}")
     #Rails.logger.debug("!!! Member.squad inspect: #{member.squad.inspect}")
 
-    @member = member
+    @member = member.fetch(:member)
+    #Rails.logger.debug("!!! test inspect: #{@test.inspect}") # works
+    @user = User.find(member.fetch(:member).user_id)
+    #Rails.logger.debug("!!! user inspect: #{@user.inspect}")
+    @squad = Squad.find(member.fetch(:member).squad_id)
+    #Rails.logger.debug("!!! squad inspect: #{@squad.inspect}")
 
-    Rails.logger.debug("!!! @Member inspect: #{@member.inspect}")
-    @user = User.find(member.user_id)
-    @squad = Squad.find(member.squad_id)
-    Rails.logger.debug("!!! user inspect: #{@user.inspect}")
-    Rails.logger.debug("!!! squad inspect: #{@squad.inspect}")
+    @subject = "#{@user.name}'s membership for #{@squad.name} has been #{@member.membership}."
+    @body = "#{@user.name}'s membership for #{@squad.name} has been updated to #{@member.membership}."
 
-    @subject = "#{member.user.name}'s membership for #{@ember.squad.name} has been #{member.membership}."
-    @body = "#{member.user.name}'s membership for #{member.squad.name} has been updated to #{member.membership}."
-
-    mail to: member.user.email,
+    mail to: @member.user.email,
          subject: @subject
   end
 end
