@@ -11,7 +11,7 @@ class MembersController < ApplicationController
       @member.membership = 'member'
       if @member.save
         # Tell the RequestMembershipMailer to send an email after saving membership status
-        RequestMembershipMailer.with(member: @member).deliver_now
+        RequestMembershipMailer.membership(member: @member).deliver
 
         # Give notice of user approval and redirect
         format.html { redirect_to @squad, notice: 'Approved user access to squad.' }
