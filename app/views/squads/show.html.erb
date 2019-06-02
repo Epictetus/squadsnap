@@ -40,7 +40,7 @@
       <td></td>
       <td></td>
       <td></td>
-    </tr>
+      <td></tr>
     <tr class="w3-hover">
       <td><%= member.user.name %></td>
       <td><%= member.membership %></td>
@@ -53,6 +53,11 @@
       <% end %>
       <% if (member.membership != 'owner' && (User.find(@squad.owner_id) == current_user)) %>
       <td><%= link_to '<button class="w3-button">Remove</button>'.html_safe, remove_squad_member_path(@squad, member) %></td>
+      <% elsif %>
+      <td></td>
+      <% end %>
+      <% if (member.membership == 'member' && (User.find(@squad.owner_id) == current_user)) %>
+      <td><%= link_to '<button class="w3-button">Demote</button>'.html_safe, demote_squad_member_path(@squad, member) %></td>
       <% elsif %>
       <td></td>
       <% end %>

@@ -63,6 +63,24 @@ class MembersController < ApplicationController
     end
   end
 
+  # PATCH/PUT /squads/1/demote/2
+  # PATCH/PUT /squads/1/demote/2.json
+  def demote()
+    respond_to do |format|
+      @member = @squad.members.find(params[:id])
+
+      @member.membership = 'request'
+      if @member.save
+        # Give notice of user approval and redirect
+        format.html { redirect_to @squad, notice: 'Demoted user.' }
+        format.json { render :show, status: :ok, location: @squad }
+      else
+        format.html { render :show }
+        format.json { render json: @squad.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 private
 
   # Use callbacks to share common setup or constraints between actions.
