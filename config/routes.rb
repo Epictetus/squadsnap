@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         get 'approve'
         get 'reject'
         get 'remove'
+        get 'demote'
       end
     end
     member do
