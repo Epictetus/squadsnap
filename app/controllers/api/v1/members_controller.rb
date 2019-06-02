@@ -13,8 +13,15 @@ module Api
           @member = @squad.members.find(params[:id])
           @member.membership = 'member'
           if @member.save
-            # Tell the RequestMembershipMailer to send an email after saving membership status
-            RequestMembershipMailer.membership(member: @member).deliver
+            begin
+              # Tell the RequestMembershipMailer to send an email after saving membership status
+              RequestMembershipMailer.membership(member: @member).deliver
+            rescue StandardError => e
+              print e
+            rescue Net::SMTPUnknownError => e
+              print e
+            #rescue Net::SMTPAuthenticationError => e
+            end
 
             # Give notice of user approval and redirect
             format.html { redirect_to api_squad_url(@squad), notice: 'Approved user access to squad.' }
@@ -33,8 +40,15 @@ module Api
           @member = @squad.members.find(params[:id])
 
           if @member.destroy
-            # Tell the RequestMembershipMailer to send an email after saving membership status
-            RequestMembershipMailer.membership(member: @member).deliver
+            begin
+              # Tell the RequestMembershipMailer to send an email after saving membership status
+              RequestMembershipMailer.membership(member: @member).deliver
+            rescue StandardError => e
+              print e
+            rescue Net::SMTPUnknownError => e
+              print e
+            #rescue Net::SMTPAuthenticationError => e
+            end
 
             format.html { redirect_to api_squad_url(@squad), notice: 'Rejected user access to squad.' }
             format.json { render :show, status: :ok, location: @squad }
