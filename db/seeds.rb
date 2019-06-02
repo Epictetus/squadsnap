@@ -18,7 +18,7 @@ def seed_my_data
   # Create my secondary user id: 2
   @ashley = User.create(
     name: "ashley",
-    email: "ashley@weteamsteve.com",
+    email: "weteamsteve@gmail.com",
     password: '123456',
     password_confirmation: '123456'
   )
