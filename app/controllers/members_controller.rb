@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
-  before_action :set_squad, only: [:approve, :reject, :remove]
-  before_action :set_member, only: [:approve, :reject, :remove]
-  before_action :require_permission, only: [:approve, :reject, :remove]
+  before_action :set_squad, only: [:approve, :reject, :remove, :demote]
+  before_action :set_member, only: [:approve, :reject, :remove, :demote]
+  before_action :require_permission, only: [:approve, :reject, :remove, :demote]
 
   # PATCH/PUT /squads/1/approve/2
   # PATCH/PUT /squads/1/approve/2.json
