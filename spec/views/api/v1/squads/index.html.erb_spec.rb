@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "squads/index", type: :view do
+RSpec.describe "/api/v1/squads/index", type: :view do
 
   # Create user for owner_id
   let(:user) { User.create!(name: 'user1', email: 'user1@squadsnap.com', password: '123456', password_confirmation: '123456') }

@@ -23,10 +23,12 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe SquadsController, type: :controller do
+RSpec.describe Api::V1::SquadsController, type: :controller do
 
   # Create user for owner_id
   let(:user) { User.create!(name: 'user1', email: 'user1@squadsnap.com', password: '123456', password_confirmation: '123456') }
+  #allow(controller).to receive(:current_user).and_return(user)
+
 
   # This should return the minimal set of attributes required to create a valid
   # Squad. As you add validations to Squad, be sure to
@@ -52,7 +54,14 @@ RSpec.describe SquadsController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # SquadsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) {
+    
+    allow(controller).to receive(:current_user).and_return(user)
+
+    {
+
+    }
+  }
 
   describe "GET #index" do
     it "returns a success response" do
@@ -158,7 +167,7 @@ RSpec.describe SquadsController, type: :controller do
       allow(controller).to receive(:current_user).and_return(user)
       squad = Squad.create! valid_attributes
       delete :destroy, params: {id: squad.to_param}, session: valid_session
-      expect(response).to redirect_to(squads_url)
+      expect(response).to redirect_to(api_squads_url)
     end
   end
 

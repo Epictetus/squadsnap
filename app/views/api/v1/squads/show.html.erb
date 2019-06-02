@@ -68,7 +68,7 @@
 
 <div class="menu-buttons">
   <% if current_user.id == @squad.owner_id %>
-  <%= link_to '<button class="actions">Edit</button>'.html_safe, edit_api_squad_member_path(@squad) %>
+  <%= link_to '<button class="actions">Edit</button>'.html_safe, edit_api_squad_path(@squad) %>
   <% end %>
   <% unless @squad.user_ids.include?(current_user.id) %>
   <%= link_to '<button class="actions">Join</button>'.html_safe, join_api_squad_path(@squad) %>
