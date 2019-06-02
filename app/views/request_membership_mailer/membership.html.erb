@@ -1,5 +1,9 @@
-<h1>RequestMembership#membership</h1>
+<h1>Hey <%= @user.name %>!</h1>
 
 <p>
-  <%= @greeting %>, find me in app/views/request_membership_mailer/membership.html.erb
+  <%= @body %>
+</p>
+
+<p>
+  You can check out the team roster <%= link_to "here", squad_url(@squad)%>
 </p>

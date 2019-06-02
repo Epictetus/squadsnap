@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
-  before_action :set_squad, only: [:approve, :reject, :remove]
-  before_action :set_member, only: [:approve, :reject, :remove]
-  before_action :require_permission, only: [:approve, :reject, :remove]
+  before_action :set_squad, only: [:approve, :reject, :remove, :demote]
+  before_action :set_member, only: [:approve, :reject, :remove, :demote]
+  before_action :require_permission, only: [:approve, :reject, :remove, :demote]
 
   # PATCH/PUT /squads/1/approve/2
   # PATCH/PUT /squads/1/approve/2.json
@@ -10,6 +10,10 @@ class MembersController < ApplicationController
       @member = @squad.members.find(params[:id])
       @member.membership = 'member'
       if @member.save
+        # Tell the RequestMembershipMailer to send an email after saving membership status
+        RequestMembershipMailer.membership(member: @member).deliver
+
+        # Give notice of user approval and redirect
         format.html { redirect_to @squad, notice: 'Approved user access to squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
@@ -24,8 +28,11 @@ class MembersController < ApplicationController
   def reject()
     respond_to do |format|
       @member = @squad.members.find(params[:id])
-      #@member.membership = 'rejected'
+
       if @member.destroy
+        # Tell the RequestMembershipMailer to send an email after saving membership status
+        RequestMembershipMailer.membership(member: @member).deliver
+
         format.html { redirect_to @squad, notice: 'Rejected user access to squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
@@ -51,6 +58,24 @@ class MembersController < ApplicationController
 
       if @member.destroy
         format.html { redirect_to @squad, notice: 'Removed user from the squad.' }
+        format.json { render :show, status: :ok, location: @squad }
+      else
+        format.html { render :show }
+        format.json { render json: @squad.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /squads/1/demote/2
+  # PATCH/PUT /squads/1/demote/2.json
+  def demote()
+    respond_to do |format|
+      @member = @squad.members.find(params[:id])
+
+      @member.membership = 'request'
+      if @member.save
+        # Give notice of user approval and redirect
+        format.html { redirect_to @squad, notice: 'Demoted user.' }
         format.json { render :show, status: :ok, location: @squad }
       else
         format.html { render :show }
