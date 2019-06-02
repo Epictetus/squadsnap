@@ -10,6 +10,10 @@ class MembersController < ApplicationController
       @member = @squad.members.find(params[:id])
       @member.membership = 'member'
       if @member.save
+        # Tell the RequestMembershipMailer to send an email after saving membership status
+        RequestMembershipMailer.with(member: @member).deliver_now
+
+        # Give notice of user approval and redirect
         format.html { redirect_to @squad, notice: 'Approved user access to squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
