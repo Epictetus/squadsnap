@@ -14,7 +14,7 @@ class Api::V1::MembersController < Api::V1::BaseController
         RequestMembershipMailer.membership(member: @member).deliver
 
         # Give notice of user approval and redirect
-        format.html { redirect_to api_v1_squad_url, notice: 'Approved user access to squad.' }
+        format.html { redirect_to api_v1_squad_url(@squad), notice: 'Approved user access to squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
         format.html { render :show }
@@ -33,7 +33,7 @@ class Api::V1::MembersController < Api::V1::BaseController
         # Tell the RequestMembershipMailer to send an email after saving membership status
         RequestMembershipMailer.membership(member: @member).deliver
 
-        format.html { redirect_to api_v1_squad_url, notice: 'Rejected user access to squad.' }
+        format.html { redirect_to api_v1_squad_url(@squad), notice: 'Rejected user access to squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
         format.html { render :show }
@@ -57,7 +57,7 @@ class Api::V1::MembersController < Api::V1::BaseController
       #end
 
       if @member.destroy
-        format.html { redirect_to api_v1_squad_url, notice: 'Removed user from the squad.' }
+        format.html { redirect_to api_v1_squad_url(@squad), notice: 'Removed user from the squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
         format.html { render :show }
@@ -75,7 +75,7 @@ class Api::V1::MembersController < Api::V1::BaseController
       @member.membership = 'request'
       if @member.save
         # Give notice of user approval and redirect
-        format.html { redirect_to api_v1_squad_url, notice: 'Demoted user.' }
+        format.html { redirect_to api_v1_squad_url(@squad), notice: 'Demoted user.' }
         format.json { render :show, status: :ok, location: @squad }
       else
         format.html { render :show }
