@@ -28,10 +28,11 @@ class MembersController < ApplicationController
   def reject()
     respond_to do |format|
       @member = @squad.members.find(params[:id])
+
       if @member.destroy
         # Tell the RequestMembershipMailer to send an email after saving membership status
         RequestMembershipMailer.membership(member: @member).deliver
-        
+
         format.html { redirect_to @squad, notice: 'Rejected user access to squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
