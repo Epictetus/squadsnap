@@ -1,34 +1,124 @@
-class Api::V1::SquadsController < Api::V1::BaseController
-  before_action :require_permission, only: [:edit, :update, :destroy]
+module Api
+  module V1
+    class SquadsController < BaseController
+      #class Api::V1::SquadsController < Api::V1::BaseController
+      before_action :set_squad, only: [:show, :edit, :join, :update, :destroy]
+      before_action :require_permission, only: [:edit, :update, :destroy]
 
-  def index
-    respond_with Squad.all
-  end
+      # GET /squads
+      # GET /squads.json
+      def index
+        @squads = Squad.all
+      end
 
-  def create
-    respond_with :api, :v1, Squad.create(squad_params)
-  end
+      # GET /squads/1
+      # GET /squads/1.json
+      def show
+        @members = Member.where(squad: @squad)
+      end
 
-  def destroy
-    respond_with Squad.destroy(params[:id])
-  end
+      # GET /squads/new
+      def new
+        @squad = Squad.new
+      end
 
-  def update
-    squad = Squad.find(params["id"])
-    squad.update_attributes(squad_params)
-    respond_with squad, json: squad
-  end
+      # GET /squads/1/edit
+      def edit
+      end
 
-private
+      # GET /squads/1/join
+      def join
+        create_membership_request
+      end
 
-  def squad_params
-    params.require(:squad).permit(:id, :name, :sport, :owner_id)
-  end
+      # POST /squads
+      # POST /squads.json
+      def create
+        @squad = Squad.new(squad_params)
 
-  # Must be owner of a squad to edit or destroy it
-  def require_permission
-    if current_user.id != @squad.owner_id
-      redirect_to squads_path, notice: 'You must be owner of a squad to do that action.'
+        respond_to do |format|
+          if @squad.save
+            format.html { redirect_to @squad, notice: 'Squad was successfully created.' }
+            format.json { render :show, status: :created, location: @squad }
+
+            # create member with membership info to the squad then save
+            create_membership
+          else
+            format.html { render :new }
+            format.json { render json: @squad.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+
+      # PATCH/PUT /squads/1
+      # PATCH/PUT /squads/1.json
+      def update
+        respond_to do |format|
+          if @squad.update(squad_params)
+            format.html { redirect_to @squad, notice: 'Squad was successfully updated.' }
+            format.json { render :show, status: :ok, location: @squad }
+          else
+            format.html { render :edit }
+            format.json { render json: @squad.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+
+      # DELETE /squads/1
+      # DELETE /squads/1.json
+      def destroy
+        @squad.destroy
+        respond_to do |format|
+          format.html { redirect_to api_squads_url, notice: 'Squad was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      end
+
+      # reset_db_path is defined in squads_helpers
+      def reset_db
+        if current_user.id == '1' || current_user.id == '2'
+          Rails.logger.debug("!!! Executing reset_db, we are user_id 1 or 2")
+
+          [User, Member, Squad].each { |model| model.truncate! }
+          Rails.application.load_seed
+          redirect_to api_squads_path, notice: 'Database has been reset.'
+        elsif
+          Rails.logger.debug("!!! Attempted to reset_db, not user_id 1")
+          redirect_to api_squads_path, notice: 'You must be user_id 1 to do that action.'
+        end
+      end
+
+      private
+        # Use callbacks to share common setup or constraints between actions.
+        def set_squad
+          @squad = Squad.find(params[:id])
+        end
+
+        # Never trust parameters from the scary internet, only allow the white list through.
+        def squad_params
+          params.require(:squad).permit(:name, :sport, :owner_id)
+          #params.require(:squad, :name, :sport, :owner_id)
+          # TODO refactor these required parameters. require everything you consider required for a squad
+        end
+
+        # Must be owner of a squad to edit or destroy it
+        def require_permission
+          if current_user.id != @squad.owner_id
+            redirect_to api_squads_path, notice: 'You must be owner of a squad to do that action.'
+          end
+        end
+
+        # Create Member row with membership information and save it
+        def create_membership
+          member = Member.new(squad: @squad, user: current_user, membership: 'owner')
+          member.save(validate: false)
+        end
+
+        # Create Member row with membership request information and save it
+        def create_membership_request
+          member = Member.new(squad: @squad, user: current_user, membership: 'request')
+          member.save(validate: false)
+        end
     end
   end
 end
