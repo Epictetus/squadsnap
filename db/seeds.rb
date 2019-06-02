@@ -18,7 +18,7 @@ def seed_my_data
   # Create my secondary user id: 2
   @ashley = User.create(
     name: "ashley",
-    email: "ashley@weteamsteve123.com",
+    email: "ashley@weteamsteve.com",
     password: '123456',
     password_confirmation: '123456'
   )
@@ -43,7 +43,7 @@ def seed_my_data
 
   # Create membership info of users on squad
   Member.create(squad: @patriots, user: @ashley, membership: 'owner')
-  Member.create(squad: @celtics, user: @weteamsteve, membership: 'request')
+  Member.create(squad: @patriots, user: @weteamsteve, membership: 'request')
 end
 
 def seed_fake_users
