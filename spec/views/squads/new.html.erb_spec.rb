@@ -19,7 +19,7 @@ RSpec.describe "squads/new", type: :view do
     allow(view).to receive(:current_user).and_return(user)
     render
     # TODO this is probably a problem consistent with require_params, another TODO
-    assert_select "form[action=?][method=?]", squads_path, "post" do
+    assert_select "form[action=?][method=?]", api_v1_squads_path, "post" do
       assert_select "input[name=?]", "squad[name]"
       assert_select "input[name=?]", "squad[sport]"
     end

@@ -4,23 +4,21 @@ Rails.application.routes.draw do
 
   namespace :api do
       namespace :v1 do
-        resources :squads, only: [:index, :create, :destroy,:update]
+        resources :squads do
+          resources :members do
+            member do
+              get 'approve'
+              get 'reject'
+              get 'remove'
+              get 'demote'
+            end
+          end
+          member do
+            get 'join'
+          end
+        end
       end
     end
-
-  resources :squads do
-    resources :members do
-      member do
-        get 'approve'
-        get 'reject'
-        get 'remove'
-        get 'demote'
-      end
-    end
-    member do
-      get 'join'
-    end
-  end
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 

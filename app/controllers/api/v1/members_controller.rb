@@ -1,4 +1,4 @@
-class MembersController < ApplicationController
+class Api::V1::MembersController < Api::V1::BaseController
   before_action :set_squad, only: [:approve, :reject, :remove, :demote]
   before_action :set_member, only: [:approve, :reject, :remove, :demote]
   before_action :require_permission, only: [:approve, :reject, :remove, :demote]
@@ -14,7 +14,7 @@ class MembersController < ApplicationController
         RequestMembershipMailer.membership(member: @member).deliver
 
         # Give notice of user approval and redirect
-        format.html { redirect_to @squad, notice: 'Approved user access to squad.' }
+        format.html { redirect_to api_v1_squad_url, notice: 'Approved user access to squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
         format.html { render :show }
@@ -33,7 +33,7 @@ class MembersController < ApplicationController
         # Tell the RequestMembershipMailer to send an email after saving membership status
         RequestMembershipMailer.membership(member: @member).deliver
 
-        format.html { redirect_to @squad, notice: 'Rejected user access to squad.' }
+        format.html { redirect_to api_v1_squad_url, notice: 'Rejected user access to squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
         format.html { render :show }
@@ -57,7 +57,7 @@ class MembersController < ApplicationController
       #end
 
       if @member.destroy
-        format.html { redirect_to @squad, notice: 'Removed user from the squad.' }
+        format.html { redirect_to api_v1_squad_url, notice: 'Removed user from the squad.' }
         format.json { render :show, status: :ok, location: @squad }
       else
         format.html { render :show }
@@ -75,7 +75,7 @@ class MembersController < ApplicationController
       @member.membership = 'request'
       if @member.save
         # Give notice of user approval and redirect
-        format.html { redirect_to @squad, notice: 'Demoted user.' }
+        format.html { redirect_to api_v1_squad_url, notice: 'Demoted user.' }
         format.json { render :show, status: :ok, location: @squad }
       else
         format.html { render :show }
@@ -99,7 +99,7 @@ private
   # Must be owner of a squad to edit or destroy it
   def require_permission
     if current_user.id != @squad.owner_id
-      redirect_to squads_path, notice: 'You must be owner of a squad to do that action.'
+      redirect_to api_v1_squads_path, notice: 'You must be owner of a squad to do that action.'
     end
   end
 end
