@@ -45,19 +45,19 @@
       <td><%= member.user.name %></td>
       <td><%= member.membership %></td>
       <% if (member.membership == 'request' && (User.find(@squad.owner_id) == current_user)) %>
-      <td><%= link_to '<button class="w3-button">Approve</button>'.html_safe, approve_api_v1_squad_member_path(@squad, member) %></td>
-      <td><%= link_to '<button class="w3-button">Reject</button>'.html_safe, reject_api_v1_squad_member_path(@squad, member) %></td>
+      <td><%= link_to '<button class="w3-button">Approve</button>'.html_safe, approve_api_squad_member_path(@squad, member) %></td>
+      <td><%= link_to '<button class="w3-button">Reject</button>'.html_safe, reject_api_squad_member_path(@squad, member) %></td>
       <% elsif %>
       <td></td>
       <td></td>
       <% end %>
       <% if (member.membership != 'owner' && (User.find(@squad.owner_id) == current_user)) %>
-      <td><%= link_to '<button class="w3-button">Remove</button>'.html_safe, remove_api_v1_squad_member_path(@squad, member) %></td>
+      <td><%= link_to '<button class="w3-button">Remove</button>'.html_safe, remove_api_squad_member_path(@squad, member) %></td>
       <% elsif %>
       <td></td>
       <% end %>
       <% if (member.membership == 'member' && (User.find(@squad.owner_id) == current_user)) %>
-      <td><%= link_to '<button class="w3-button">Demote</button>'.html_safe, demote_api_v1_squad_member_path(@squad, member) %></td>
+      <td><%= link_to '<button class="w3-button">Demote</button>'.html_safe, demote_api_squad_member_path(@squad, member) %></td>
       <% elsif %>
       <td></td>
       <% end %>
@@ -68,10 +68,10 @@
 
 <div class="menu-buttons">
   <% if current_user.id == @squad.owner_id %>
-  <%= link_to '<button class="actions">Edit</button>'.html_safe, edit_api_v1_squad_member_path(@squad) %>
+  <%= link_to '<button class="actions">Edit</button>'.html_safe, edit_api_squad_member_path(@squad) %>
   <% end %>
   <% unless @squad.user_ids.include?(current_user.id) %>
-  <%= link_to '<button class="actions">Join</button>'.html_safe, join_api_v1_squad_path(@squad) %>
+  <%= link_to '<button class="actions">Join</button>'.html_safe, join_api_squad_path(@squad) %>
   <% end %>
-  <%= link_to '<button class="actions">Back</button>'.html_safe, api_v1_squads_path %>
+  <%= link_to '<button class="actions">Back</button>'.html_safe, api_squads_path %>
   </div>

@@ -1,9 +1,10 @@
+require 'api_constraints'
+
 Rails.application.routes.draw do
 
-  root to: 'site#index'
-
+  # Squads and Members API
   namespace :api do
-    namespace :v1 do
+    scope module: :v1, constraints: ApiConstraints.new(version:1, default: true) do
       resources :squads do
         resources :members do
           member do
@@ -19,6 +20,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :squads
+  root to: 'site#index'
 
   # Devise User Authentication
   devise_for :users, :controllers => {:registrations => "registrations"}

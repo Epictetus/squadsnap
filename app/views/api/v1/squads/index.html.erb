@@ -12,7 +12,7 @@
 
 <br />
 <div class="menu-buttons">
-  <%= link_to '<button class="actions">Create a Squad</button>'.html_safe, new_api_v1_squad_path %>
+  <%= link_to '<button class="actions">Create a Squad</button>'.html_safe, new_api_squad_path %>
   <%= link_to '<button class="actions">Reset database</button>'.html_safe, reset_db_path, data: { confirm: 'Are you sure?' } %>
 </div>
 <br />
@@ -43,15 +43,15 @@
         <td><%= squad.sport %></td>
         <td><%= User.find(squad.owner_id).name %></td>
 
-        <td><%= link_to '<button class="w3-button">Roster</button>'.html_safe, api_v1_squad_path(:id => squad) %></td>
+        <td><%= link_to '<button class="w3-button">Roster</button>'.html_safe, api_squad_path(:id => squad) %></td>
         <% unless squad.user_ids.include?(current_user.id) %>
-        <td><%= link_to '<button class="w3-button">Join</button>'.html_safe, join_api_v1_squad_path(:id => squad) %></td>
+        <td><%= link_to '<button class="w3-button">Join</button>'.html_safe, join_api_squad_path(:id => squad) %></td>
         <% else %>
         <td></td>
         <% end %>
         <% if current_user.id == squad.owner_id %>
-        <td><%= link_to '<button class="w3-button">Edit</button>'.html_safe, edit_api_v1_squad_path(squad) %></td>
-        <td><%= link_to '<button class="w3-button">Destroy</button>'.html_safe, api_v1_squad_path(:id => squad), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '<button class="w3-button">Edit</button>'.html_safe, edit_api_squad_path(squad) %></td>
+        <td><%= link_to '<button class="w3-button">Destroy</button>'.html_safe, api_squad_path(:id => squad), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% elsif %>
         <td></td>
         <td></td>

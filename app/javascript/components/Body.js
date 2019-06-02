@@ -16,7 +16,7 @@ class Body extends React.Component {
   componentDidMount() {
     console.log('Body componentDidMounted')
 
-    $.getJSON('/api/v1/squads.json', (response) => {
+    $.getJSON('/api/squads.json', (response) => {
       this.setState({ squads: response })
     });
   }
@@ -32,7 +32,7 @@ class Body extends React.Component {
     console.log('Body handleDelete (id: ' + id + ')')
 
       $.ajax({
-          url: `/api/v1/squads/${id}`,
+          url: `/api/squads/${id}`,
           type: 'DELETE',
           success:() => {
               this.removeItemClient(id);
@@ -44,7 +44,7 @@ class Body extends React.Component {
     console.log('Body handleUpdate (squad: ' + squad + ')')
 
     $.ajax({
-            url: `/api/v1/squads/${squad.id}`,
+            url: `/api/squads/${squad.id}`,
             type: 'PUT',
             data: { squad: squad },
             success: () => {
