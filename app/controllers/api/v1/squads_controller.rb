@@ -100,7 +100,7 @@ module Api
         def squad_params
           params.require(:squad).permit(:name, :sport, :owner_id)
           #params.require(:squad, :name, :sport, :owner_id)
-          # TODO refactor these required parameters. require everything you consider required for a squad
+          # TODO refactor these required parameters. require everysquad you consider required for a squad
         end
 
         # Must be owner of a squad to edit or destroy it

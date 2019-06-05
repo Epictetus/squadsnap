@@ -26,6 +26,13 @@ Rails.application.routes.draw do
   resources :squads
   root to: 'site#index'
 
+  # Forward all requests to StaticController#index but requests
+  # must be non-Ajax (!req.xhr?) and HTML Mime type (req.format.html?).
+  # This does not include the root ("/") path.
+  get '*page', to: 'site#index', constraints: ->(req) do
+    !req.xhr? && req.format.html?
+  end
+
   # Devise User Authentication
   devise_for :users, :controllers => {:registrations => "registrations"}
 
