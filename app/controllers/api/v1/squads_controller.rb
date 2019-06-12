@@ -38,7 +38,8 @@ module Api
 
         respond_to do |format|
           if @squad.save
-            format.html { redirect_to [:api, @squads], notice: 'Squad was successfully created.' }
+            logger.debug "Squad hash: #{@squad.inspect}" # TODO: debug this, problem is probably at https://github.com/weteamsteve/squadsnap/blob/master/app/views/api/v1/squads/_form.html.erb#L45 because I don't believe we reach this
+            format.html { redirect_to [:api, @squad], notice: 'Squad was successfully created.' }
             format.json { render :show, status: :created, location: @squad }
 
             # create member with membership info to the squad then save
