@@ -30,11 +30,11 @@ Rails.application.routes.draw do
 
   resources :squads
 
-  root to: 'api/v1/squads#index'
+  #root to: 'api/v1/squads#index'
+  root to: 'site#index'
 
-  #root to: 'site#index' # used when React is on the main page
-  # since React isnt on the main page
-  get 'react', to: 'site#index'
+  # If we want React on another link
+  #get 'react', to: 'site#index'
 
   # Devise User Authentication
   devise_for :users, :controllers => {:registrations => "registrations"}
