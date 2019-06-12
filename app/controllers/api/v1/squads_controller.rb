@@ -38,7 +38,7 @@ module Api
 
         respond_to do |format|
           if @squad.save
-            format.html { redirect_to @squad, notice: 'Squad was successfully created.' }
+            format.html { redirect_to [:api, @squads], notice: 'Squad was successfully created.' }
             format.json { render :show, status: :created, location: @squad }
 
             # create member with membership info to the squad then save
