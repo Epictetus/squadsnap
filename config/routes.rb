@@ -1,6 +1,11 @@
 require 'api_constraints'
 
 Rails.application.routes.draw do
+  # GraphQL
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+  end
+  post "/graphql", to: "graphql#execute"
 
   # Squads and Members API
   namespace :api do
@@ -24,7 +29,12 @@ Rails.application.routes.draw do
   end
 
   resources :squads
+
+  #root to: 'api/v1/squads#index'
   root to: 'site#index'
+
+  # If we want React on another link
+  #get 'react', to: 'site#index'
 
   # Devise User Authentication
   devise_for :users, :controllers => {:registrations => "registrations"}

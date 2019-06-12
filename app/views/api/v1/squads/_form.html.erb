@@ -6,7 +6,7 @@
 <%= form_with(model: squad, local: true, class: "w3-container") do |form| %>
 <br />
 <br />
-<div class="w3-container w3-teal">
+<div class="w3-container w3-deep-orange">
   <h2>Create a new Squad</h2>
 </div>
 <br />
@@ -36,12 +36,7 @@
     <%= form.text_field :sport %>
   </div>
 
-  <div class="w3-text-teal">
-    <%= 'Owner' %>
-  </div>
-  <div class="w3-input w3-border w3-light-grey">
-    <%= current_user.id %>
-  </div>
+
   <%= form.hidden_field :owner_id, value: current_user.id %>
 
   <br />
