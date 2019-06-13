@@ -31,10 +31,11 @@ Rails.application.routes.draw do
   resources :squads
 
   #root to: 'api/v1/squads#index'
-  root to: 'site#index'
+  #root to: 'dashboard#index'
+  root to: 'squads#index'
 
   # If we want React on another link
-  #get 'react', to: 'site#index'
+  get 'react', to: 'react#index'
 
   # Devise User Authentication
   devise_for :users, :controllers => {:registrations => "registrations"}

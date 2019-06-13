@@ -1,5 +1,7 @@
 class SquadsController < ApplicationController
+  # GET /squads
   def index
+    @squads = Squad.all
   end
 
   # reset_db_path is defined in squads_helpers
