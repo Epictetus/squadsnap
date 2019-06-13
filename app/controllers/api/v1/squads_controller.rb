@@ -38,7 +38,6 @@ module Api
 
         respond_to do |format|
           if @squad.save
-            #format.html { redirect_to @squad, notice: 'Squad was successfully created.' }
             format.html { redirect_to [:api, @squad], notice: 'Squad was successfully created.' }
             format.json { render :show, status: :created, location: @squad }
 
@@ -56,7 +55,7 @@ module Api
       def update
         respond_to do |format|
           if @squad.update(squad_params)
-            format.html { redirect_to @squad, notice: 'Squad was successfully updated.' }
+            format.html { redirect_to [:api, @squad], notice: 'Squad was successfully updated.' }
             format.json { render :show, status: :ok, location: @squad }
           else
             format.html { render :edit }
@@ -74,22 +73,6 @@ module Api
           format.json { head :no_content }
         end
       end
-
-      # reset_db_path is defined in squads_helpers
-      #def reset_db
-        #Rails.logger.debug("!!! We reached here 1")
-        #if [1, 2].include? current_user.id
-        #  Rails.logger.debug("!!! Executing reset_db, we are user_id 1 or 2")
-
-        #  [User, Member, Squad].each { |model| model.truncate! }
-        #  Rails.application.load_seed
-        #  redirect_to api_squads_path, notice: 'Database has been reset.'
-        #elsif
-        #  Rails.logger.debug("!!! Attempted to reset_db, not user_id 1")
-        #  #redirect_to api_squads_path, notice: 'You must be user_id 1 to do that action.'
-        #end
-      #end
-      #helper_method :reset_db
 
       private
         # Use callbacks to share common setup or constraints between actions.
