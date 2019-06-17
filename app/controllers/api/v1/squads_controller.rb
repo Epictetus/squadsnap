@@ -38,7 +38,7 @@ module Api
 
         respond_to do |format|
           if @squad.save
-            format.html { redirect_to @squad, notice: 'Squad was successfully created.' }
+            format.html { redirect_to [:api, @squad], notice: 'Squad was successfully created.' }
             format.json { render :show, status: :created, location: @squad }
 
             # create member with membership info to the squad then save
@@ -55,7 +55,7 @@ module Api
       def update
         respond_to do |format|
           if @squad.update(squad_params)
-            format.html { redirect_to @squad, notice: 'Squad was successfully updated.' }
+            format.html { redirect_to [:api, @squad], notice: 'Squad was successfully updated.' }
             format.json { render :show, status: :ok, location: @squad }
           else
             format.html { render :edit }
@@ -90,9 +90,6 @@ module Api
         # Must be owner of a squad to edit or destroy it
         def require_permission
           if current_user.id != @squad.owner_id
-            # TODO: need to give a json response back
-
-
             redirect_to api_squads_path, notice: 'You must be owner of a squad to do that action.'
           end
         end
