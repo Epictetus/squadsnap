@@ -4,7 +4,7 @@
 
 The #2 sports team management app that makes communication and organization a breeze.
 
-**This application is being completely redesigned at [github.com/weteamsteve/squadsnap2](github.com/weteamsteve/squadsnap2). Stay tuned.**
+**This application is being completely redesigned at [github.com/weteamsteve/squadsnap2](https://github.com/weteamsteve/squadsnap2). Stay tuned.**
 
 ## Squadsnap
   * View the project board here at https://github.com/weteamsteve/squadsnap/projects/1
